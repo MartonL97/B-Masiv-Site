@@ -537,6 +537,95 @@ img {
     color: var(--orange) !important;
 }
 
+/* Index contact section refresh */
+#contact {
+    background: linear-gradient(180deg, #ffffff 0%, #fffaf1 100%);
+}
+
+#contact .contact-layout {
+    margin-top: 1rem;
+}
+
+#contact .contact-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    height: 100%;
+}
+
+#contact .division-card {
+    border: 1px solid #ececec;
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+#contact .division-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(255, 164, 0, 0.18);
+    border-color: rgba(255, 164, 0, 0.6);
+}
+
+#contact .division-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px dashed #e9e9e9;
+}
+
+#contact .division-card-header i {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+    font-size: 0.9rem;
+}
+
+#contact .division-card h4 {
+    border: 0;
+    padding: 0;
+    font-size: 1.05rem;
+}
+
+#contact .division-card-label {
+    color: #7c7c7c;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+#contact .contact-form-panel {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 16px;
+    border: 1px solid #e9e9e9;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    background: #ffffff;
+}
+
+#contact .contact-form-panel .contact-input {
+    min-height: 48px;
+    border-radius: 10px;
+}
+
+#contact .contact-form-panel textarea.contact-input {
+    min-height: 135px;
+}
+
+#contact .contact-form-panel .btn-warning {
+    border-radius: 999px;
+    font-weight: 700;
+}
+
 @media (max-width: 767px) {
     .simple-contact-card {
         margin-bottom: 1rem;
@@ -549,6 +638,21 @@ img {
     .division-card {
         padding: 1.5rem;
         margin-bottom: 1rem;
+    }
+
+    #contact .division-card {
+        padding: 1.25rem;
+    }
+
+    #contact .contact-form-panel {
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 991px) {
+    #contact .contact-cards-grid {
+        grid-template-columns: 1fr;
+        height: auto;
     }
 }
 
