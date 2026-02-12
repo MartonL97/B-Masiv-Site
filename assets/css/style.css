@@ -456,6 +456,102 @@ img {
     color: var(--orange) !important;
 }
 
+/* Simple Contact Cards (Top Row) */
+.simple-contact-card {
+    padding: 1.5rem 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    transition: var(--transition);
+    height: 100%;
+}
+
+.simple-contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 164, 0, 0.15);
+}
+
+.contact-icon-simple {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--text-light);
+}
+
+.simple-contact-card h5 {
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.simple-contact-card p {
+    line-height: 1.5;
+}
+
+.simple-contact-card a:hover {
+    color: var(--orange) !important;
+}
+
+/* Simplified Contact Form */
+.contact-form-simple {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Division Cards (Bottom Row) */
+.division-card {
+    background: #ffffff;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 2rem;
+    transition: var(--transition);
+    height: 100%;
+}
+
+.division-card:hover {
+    border-color: var(--orange);
+    box-shadow: 0 4px 20px rgba(255, 164, 0, 0.12);
+    transform: translateY(-3px);
+}
+
+.division-card h4 {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--orange);
+}
+
+.division-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.division-card a:hover {
+    color: var(--orange) !important;
+}
+
+@media (max-width: 767px) {
+    .simple-contact-card {
+        margin-bottom: 1rem;
+    }
+
+    .contact-form-simple {
+        padding: 1.5rem;
+    }
+
+    .division-card {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
 /* Contact Information Cards (main page contact section) */
 .contact-info-wrapper {
     display: flex;

@@ -154,10 +154,10 @@
                             <p class="card-text flex-grow-1">
                                 Fabrică specializată în fasonarea fierului beton cu depozite în Carei și Crasna. Dispunem de echipamente moderne și personal calificat pentru executarea rapidă și precisă a comenzilor.
                             </p>
-                            <div class="d-flex gap-2 flex-wrap mt-3">
+                            <div class="d-flex gap-2 flex-wrap align-items-center mt-3">
                                 <a href="fasonare.html" class="btn btn-warning">Află mai multe</a>
-                                <a href="depozit-carei.html" class="btn btn-outline-warning btn-sm">Depozit Carei</a>
-                                <a href="depozit-crasna.html" class="btn btn-outline-warning btn-sm">Depozit Crasna</a>
+                                <a href="depozit-carei.html" class="btn btn-warning">Depozit Carei</a>
+                                <a href="depozit-crasna.html" class="btn btn-warning">Depozit Crasna</a>
                             </div>
                         </div>
                     </div>
@@ -267,45 +267,38 @@
         </div>
     </section>
 
-    <!-- Contact Form Section -->
-    <section id="contact" class="py-5 bg-light">
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-white">
         <div class="container">
-            <div class="mb-5">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="bg-warning" style="width: 5px; height: 40px; margin-right: 15px;"></div>
-                    <h2 class="h1 fw-bold mb-0">Contactează-ne</h2>
-                </div>
+            <!-- Section Title -->
+            <div class="text-center mb-5">
+                <h2 class="h1 fw-bold mb-3">Contactează-ne</h2>
                 <p class="lead text-muted">Suntem aici să vă ajutăm! Trimiteți-ne un mesaj și vă vom răspunde cât mai curând posibil.</p>
             </div>
-
-            <div class="row g-4">
-                <!-- Contact Form -->
-                <div class="col-lg-7">
-                    <div class="contact-form-wrapper">
-                        <form action="mailto:contact@b-masiv.ro" method="post" enctype="text/plain" class="contact-form">
+            
+            <!-- Contact Form -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8">
+                    <div class="contact-form-simple">
+                        <form action="mailto:contact@b-masiv.ro" method="post" enctype="text/plain">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label for="contactName" class="form-label">Nume <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control contact-input" id="contactName" name="Nume" placeholder="Numele dvs. complet" required>
+                                    <input type="text" class="form-control contact-input" name="Nume" placeholder="Nume *" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="contactEmail" class="form-label">Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control contact-input" id="contactEmail" name="Email" placeholder="exemplu@email.com" required>
+                                    <input type="email" class="form-control contact-input" name="Email" placeholder="Email *" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="contactPhone" class="form-label">Telefon</label>
-                                    <input type="tel" class="form-control contact-input" id="contactPhone" name="Telefon" placeholder="+40 7XX XXX XXX">
+                                    <input type="tel" class="form-control contact-input" name="Telefon" placeholder="Telefon">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="contactSubject" class="form-label">Subiect <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control contact-input" id="contactSubject" name="Subiect" placeholder="Subiectul mesajului" required>
+                                    <input type="text" class="form-control contact-input" name="Subiect" placeholder="Subiect *" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="contactMessage" class="form-label">Mesaj <span class="text-danger">*</span></label>
-                                    <textarea class="form-control contact-input" id="contactMessage" name="Mesaj" rows="6" placeholder="Scrieți mesajul dvs. aici..." required></textarea>
+                                    <textarea class="form-control contact-input" name="Mesaj" rows="4" placeholder="Mesajul dvs. *" required></textarea>
                                 </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-warning btn-lg contact-submit-btn">
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-warning btn-lg px-5">
                                         <i class="fas fa-paper-plane me-2"></i>Trimite Mesajul
                                     </button>
                                 </div>
@@ -313,121 +306,60 @@
                         </form>
                     </div>
                 </div>
-
-                <!-- Contact Information -->
-                <div class="col-lg-5">
-                    <div class="contact-info-wrapper">
-                        <div class="contact-info-card mb-4">
-                            <div class="contact-info-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-info-content">
-                                <h4 class="fw-bold mb-2">Telefon</h4>
-                                <p class="mb-1"><a href="tel:+40260672788" class="text-decoration-none">(004) 0260 672 788</a></p>
-                                <p class="mb-0"><a href="tel:+40758061773" class="text-decoration-none">(004) 0758 061 773</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-card mb-4">
-                            <div class="contact-info-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-info-content">
-                                <h4 class="fw-bold mb-2">Email</h4>
-                                <p class="mb-0"><a href="mailto:contact@b-masiv.ro" class="text-decoration-none">contact@b-masiv.ro</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-card mb-4">
-                            <div class="contact-info-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-info-content">
-                                <h4 class="fw-bold mb-2">Adresă</h4>
-                                <p class="mb-0">Pericei Nr. 60/N<br>Sălaj, România</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-card">
-                            <div class="contact-info-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="contact-info-content">
-                                <h4 class="fw-bold mb-2">Program</h4>
-                                <p class="mb-1"><strong>Luni - Vineri:</strong> 08:00 - 17:00</p>
-                                <p class="mb-0"><strong>Sâmbătă:</strong> 08:00 - 13:00</p>
-                            </div>
-                        </div>
-
-                        <!-- Map Link -->
-                        <div class="map-link-wrapper mt-4">
-                            <a href="https://www.google.com/maps/place/Sc+B-Masiv+Srl/@47.222665,22.8645516,15z/data=!4m10!1m2!2m1!1sPericei+Nr.+60%2FN+Salaj+Romania!3m6!1s0x47486f8c9f5637cf:0xfc01c885c7786c80!8m2!3d47.2226686!4d22.8779472!15sCh5QZXJpY2VpIE5yLiA2MC9OIFNhbGFqIFJvbWFuaWFaHyIdcGVyaWNlaSBuciA2MCBuIHNhbGFqIHJvbWFuaWGSARpzdGVlbF9jb25zdHJ1Y3Rpb25fY29tcGFueeABAA!16s%2Fg%2F12q4rwg1x?entry=ttu&g_ep=EgoyMDI2MDIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn btn-outline-warning w-100">
-                                <i class="fas fa-map-marked-alt me-2"></i>Deschide în Google Maps
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Details Section -->
-    <section class="py-5 text-white" style="background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('assets/img/footerLocation.jpg') center/cover no-repeat;">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="h1 fw-bold">Diviziile Noastre</h2>
-                <p class="lead">Contactați direct divizia care vă interesează</p>
             </div>
 
+            <!-- Divider -->
+            <div class="text-center mb-4">
+                <hr class="my-4" style="max-width: 200px; margin: 0 auto; height: 2px; background: #ffa400; opacity: 1;">
+                <h3 class="h4 fw-bold mt-4 mb-3">Diviziile Noastre</h3>
+                <p class="text-muted">Contactați direct divizia care vă interesează</p>
+            </div>
+
+            <!-- Division Cards -->
             <div class="row g-4">
-                <!-- B-Masiv SRL -->
                 <div class="col-md-4">
-                    <div class="contact-card p-4 h-100">
-                        <h3 class="h4 fw-bold mb-3 text-warning">B-Masiv SRL</h3>
+                    <div class="division-card">
+                        <h4 class="fw-bold mb-3">B-Masiv SRL</h4>
                         <p class="mb-2">
                             <i class="fas fa-phone me-2 text-warning"></i>
-                            Tel: (004) 0260 672 788
+                            <a href="tel:+40260672788" class="text-decoration-none text-dark">(004) 0260 672 788</a>
                         </p>
                         <p class="mb-2">
                             <i class="fas fa-envelope me-2 text-warning"></i>
-                            <a href="mailto:contact@b-masiv.ro" class="text-white text-decoration-none">contact@b-masiv.ro</a>
+                            <a href="mailto:contact@b-masiv.ro" class="text-decoration-none text-dark">contact@b-masiv.ro</a>
                         </p>
-                        <p class="mb-0">
+                        <p class="mb-0 text-muted">
                             <i class="fas fa-map-marker-alt me-2 text-warning"></i>
                             Pericei Nr. 60/N, Sălaj, România
                         </p>
                     </div>
                 </div>
-
-                <!-- Fabrica Fasonare -->
                 <div class="col-md-4">
-                    <div class="contact-card p-4 h-100">
-                        <h3 class="h4 fw-bold mb-3 text-warning">Fabrica Fasonat Oțel-Beton</h3>
-                        <p class="mb-2 fw-bold">Popescu Nicolae</p>
+                    <div class="division-card">
+                        <h4 class="fw-bold mb-3">Fabrica Fasonat Oțel-Beton</h4>
+                        <p class="mb-2 text-muted">Popescu Nicolae</p>
                         <p class="mb-2">
                             <i class="fas fa-phone me-2 text-warning"></i>
-                            Tel: (004) 0758 061 773
+                            <a href="tel:+40758061773" class="text-decoration-none text-dark">(004) 0758 061 773</a>
                         </p>
                         <p class="mb-0">
                             <i class="fas fa-envelope me-2 text-warning"></i>
-                            <a href="mailto:fabrica-fasonare@email.com" class="text-white text-decoration-none">fabrica-fasonare@email.com</a>
+                            <a href="mailto:fabrica-fasonare@email.com" class="text-decoration-none text-dark">fabrica-fasonare@email.com</a>
                         </p>
                     </div>
                 </div>
-
-                <!-- Statie Betoane -->
                 <div class="col-md-4">
-                    <div class="contact-card p-4 h-100">
-                        <h3 class="h4 fw-bold mb-3 text-warning">Stație de Betoane</h3>
+                    <div class="division-card">
+                        <h4 class="fw-bold mb-3">Stație de Betoane</h4>
                         <p class="mb-2">
                             <i class="fas fa-phone me-2 text-warning"></i>
-                            Tel: 0123 456 789
+                            <a href="tel:0123456789" class="text-decoration-none text-dark">0123 456 789</a>
                         </p>
                         <p class="mb-2">
                             <i class="fas fa-envelope me-2 text-warning"></i>
-                            <a href="mailto:statie-betoane@email.com" class="text-white text-decoration-none">statie-betoane@email.com</a>
+                            <a href="mailto:statie-betoane@email.com" class="text-decoration-none text-dark">statie-betoane@email.com</a>
                         </p>
-                        <p class="mb-0">
+                        <p class="mb-0 text-muted">
                             <i class="fas fa-map-marker-alt me-2 text-warning"></i>
                             Pericei Nr. 60/N, Sălaj, România
                         </p>
@@ -438,34 +370,7 @@
     </section>
 
     <!-- Footer -->
-<footer class="bg-black text-white py-4">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-12">
-                    <ul class="list-inline d-flex flex-wrap justify-content-center mb-2">
-                        <li class="list-inline-item me-3">
-                            <a href="index.html" class="text-white text-decoration-none">Prima Pagină</a>
-                        </li>
-                        <li class="list-inline-item me-3">
-                            <a href="despre-noi.html" class="text-white text-decoration-none">Despre Noi</a>
-                        </li>
-                        <li class="list-inline-item me-3">
-                            <a href="servicii.html" class="text-white text-decoration-none">Servicii</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="galerie-foto.html" class="text-white text-decoration-none">Galerie Foto</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-12 text-center mt-3">
-                    <a href="https://www.facebook.com/BMasivhalemetalice/?ref=br_rs" target="_blank" class="text-white fs-3" aria-label="Facebook">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                       <p class="mb-0 small">&copy; 2026 B-Masiv SRL. Toate drepturile sunt rezervate.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+
 
     <!-- Bootstrap 5.3 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -509,5 +414,33 @@
     <!-- Chatbot Script -->
     <script src="assets/js/chatbot.js"></script>
 
+<footer class="bg-black text-white py-4">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-12">
+                    <ul class="list-inline d-flex flex-wrap justify-content-center mb-2">
+                        <li class="list-inline-item me-3">
+                            <a href="index.html" class="text-white text-decoration-none">Prima Pagină</a>
+                        </li>
+                        <li class="list-inline-item me-3">
+                            <a href="despre-noi.html" class="text-white text-decoration-none">Despre Noi</a>
+                        </li>
+                        <li class="list-inline-item me-3">
+                            <a href="servicii.html" class="text-white text-decoration-none">Servicii</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="galerie-foto.html" class="text-white text-decoration-none">Galerie Foto</a>
+                        </li>
+                    </ul>
+                    <p class="mb-0 small">&copy; 2026 Sc B-Masiv SRL. Toate drepturile sunt rezervate.</p>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <a href="https://www.facebook.com/BMasivhalemetalice/?ref=br_rs" target="_blank" class="text-white fs-3" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
