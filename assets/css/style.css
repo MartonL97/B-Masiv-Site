@@ -834,6 +834,126 @@ img {
     }
 }
 
+/* --- Gallery Accordion --- */
+.gallery-accordion-item {
+    border: none !important;
+    margin-bottom: 1rem;
+    border-radius: 12px !important;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.gallery-accordion-item:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.gallery-accordion-btn {
+    background: #fff !important;
+    color: var(--text-dark) !important;
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: var(--font-family);
+    padding: 1.25rem 1.5rem;
+    border-left: 5px solid var(--orange) !important;
+    transition: var(--transition);
+}
+
+.gallery-accordion-btn:not(.collapsed) {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%) !important;
+    color: #fff !important;
+    border-left-color: var(--orange-darker) !important;
+    box-shadow: none;
+}
+
+.gallery-accordion-btn:not(.collapsed) .text-warning {
+    color: #fff !important;
+}
+
+.gallery-accordion-btn::after {
+    filter: none;
+    transition: var(--transition);
+}
+
+.gallery-accordion-btn:not(.collapsed)::after {
+    filter: brightness(0) invert(1);
+}
+
+.gallery-accordion-btn i {
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.gallery-accordion-btn span {
+    letter-spacing: 0.5px;
+}
+
+.gallery-accordion-item .accordion-body {
+    padding: 1.5rem;
+    background: #fff;
+}
+
+/* Empty State for Gallery Sections */
+.gallery-empty-state {
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 12px;
+    padding: 3rem 2rem !important;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 164, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--orange);
+}
+
+.gallery-empty-state p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+    .gallery-accordion-btn {
+        font-size: 1.1rem;
+        padding: 1rem 1.25rem;
+    }
+
+    .gallery-accordion-btn i {
+        font-size: 1.2rem;
+    }
+
+    .gallery-accordion-item .accordion-body {
+        padding: 1rem;
+    }
+
+    .gallery-empty-state {
+        padding: 2rem 1rem !important;
+        min-height: 200px;
+    }
+
+    .empty-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .gallery-empty-state p {
+        font-size: 1rem;
+    }
+}
+
 /* --- Map Placeholder --- */
 .map-placeholder {
     background: #e9ecef;
