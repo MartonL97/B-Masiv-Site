@@ -58,14 +58,14 @@
                         <a class="nav-link" href="despre-noi.html">Despre Noi</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Divizii</a>
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departamente</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><h6 class="dropdown-header text-warning">Fabrica de Fasonat Oțel-Beton</h6></li>
                             <li><a class="dropdown-item" href="fasonare.html"><i class="fas fa-industry me-2"></i>Fabrica Fasonare</a></li>
                             <li><a class="dropdown-item ps-5" href="depozit-carei.html"><i class="fas fa-store me-2"></i>Depozit Magazin Carei</a></li>
                             <li><a class="dropdown-item active ps-5" href="depozit-crasna.html"><i class="fas fa-store me-2"></i>Depozit Magazin Crasna</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="statie-betoane.html"><i class="fas fa-truck-loading me-2"></i>Stație de Betoane</a></li>
+                            <li><a class="dropdown-item" href="statie-betoane.html"><i class="fas fa-truck-moving me-2"></i>Stație de Betoane</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -91,7 +91,7 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header d-flex align-items-center" style="min-height: 40vh; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/img/home-bg.jpg') center/cover no-repeat;">
+    <section class="page-header d-flex align-items-center" style="min-height: 40vh; background: url('assets/img/depozit-crasna.jpg') center/cover no-repeat;">
         <div class="container text-white">
             <h1 class="display-4 fw-bold mb-3">Depozit / Magazin Crasna</h1>
             <nav aria-label="breadcrumb">
@@ -124,13 +124,13 @@
                         <div class="col-md-6">
                             <div class="p-4 bg-light rounded">
                                 <h3 class="h5 fw-bold mb-3"><i class="fas fa-map-marker-alt text-warning me-2"></i>Adresă</h3>
-                                <p class="mb-0">Adresa va fi actualizată</p>
+                                <p class="mb-0">Varsolțului, Crasna, Romania, 457085</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="p-4 bg-light rounded">
                                 <h3 class="h5 fw-bold mb-3"><i class="fas fa-phone text-warning me-2"></i>Telefon</h3>
-                                <p class="mb-0"><a href="tel:0123456789" class="text-dark text-decoration-none">0123 456 789</a></p>
+                                <p class="mb-0"><a href="tel:0774436522" class="text-dark text-decoration-none">0774 436 522</a></p>
                             </div>
                         </div>
                         <div class="col-12">
@@ -153,45 +153,85 @@
                     <div class="bg-warning" style="width: 5px; height: 40px; margin-right: 15px;"></div>
                     <h2 class="h1 fw-bold mb-0">Produse Disponibile</h2>
                 </div>
-                <p class="lead text-muted">Lista produselor va fi actualizată în curând.</p>
+                <p class="lead text-muted">Selectați produsul pentru a vedea detaliile disponibile.</p>
             </div>
 
-            <div class="row g-4">
-                <!-- Product 1 -->
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm text-center">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
-                            <div class="mb-4">
-                                <i class="fas fa-box fa-4x text-warning"></i>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="accordion shadow-sm" id="productsAccordionCrasna">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#crasnaProd1" aria-expanded="true" aria-controls="crasnaProd1">
+                                    Fier Beton
+                                </button>
+                            </h2>
+                            <div id="crasnaProd1" class="accordion-collapse collapse show" data-bs-parent="#productsAccordionCrasna">
+                                <div class="accordion-body">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-md-4">
+                                            <img src="assets/img/fasonare/3-faso.jpeg" alt="Fier Beton" class="img-fluid rounded shadow-sm w-100" style="height: 200px; object-fit: cover;">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p class="mb-2">Fier beton pentru armături, potrivit pentru lucrări civile și industriale.</p>
+                                            <ul class="mb-0">
+                                                <li>Dimensiuni multiple</li>
+                                                <li>Stoc disponibil rapid</li>
+                                                <li>Consultanță pentru alegerea produsului</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="h4 fw-bold mb-3">Fier Beton</h3>
-                            <p class="text-muted">Produse din fier beton de diferite dimensiuni și specificații.</p>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Product 2 -->
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm text-center">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
-                            <div class="mb-4">
-                                <i class="fas fa-box fa-4x text-warning"></i>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#crasnaProd2" aria-expanded="false" aria-controls="crasnaProd2">
+                                    Plase Sudate
+                                </button>
+                            </h2>
+                            <div id="crasnaProd2" class="accordion-collapse collapse" data-bs-parent="#productsAccordionCrasna">
+                                <div class="accordion-body">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-md-4">
+                                            <img src="assets/img/fasonare/7-faso.jpeg" alt="Plase Sudate" class="img-fluid rounded shadow-sm w-100" style="height: 200px; object-fit: cover;">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p class="mb-2">Plase sudate pentru armarea plăcilor și elementelor structurale.</p>
+                                            <ul class="mb-0">
+                                                <li>Rezistență și durabilitate</li>
+                                                <li>Potrivite pentru fundații și platforme</li>
+                                                <li>Livrare locală rapidă</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="h4 fw-bold mb-3">Plase Sudate</h3>
-                            <p class="text-muted">Plase sudate pentru armarea betonului și diverse aplicații.</p>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Product 3 -->
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm text-center">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
-                            <div class="mb-4">
-                                <i class="fas fa-box fa-4x text-warning"></i>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#crasnaProd3" aria-expanded="false" aria-controls="crasnaProd3">
+                                    Accesorii Construcții
+                                </button>
+                            </h2>
+                            <div id="crasnaProd3" class="accordion-collapse collapse" data-bs-parent="#productsAccordionCrasna">
+                                <div class="accordion-body">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-md-4">
+                                            <img src="assets/img/confectii/5-conf.jpeg" alt="Accesorii Construcții" class="img-fluid rounded shadow-sm w-100" style="height: 200px; object-fit: cover;">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p class="mb-2">Accesorii și materiale complementare pentru construcții.</p>
+                                            <ul class="mb-0">
+                                                <li>Soluții pentru montaj și fixare</li>
+                                                <li>Disponibile la comandă</li>
+                                                <li>Recomandări tehnice la cerere</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="h4 fw-bold mb-3">Accesorii Construcții</h3>
-                            <p class="text-muted">Diverse accesorii și materiale pentru construcții.</p>
                         </div>
                     </div>
                 </div>
@@ -211,10 +251,21 @@
 
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <div class="p-5 bg-light rounded text-center" style="min-height: 400px; display: flex; align-items: center; justify-content: center;">
-                        <div>
-                            <i class="fas fa-map-marked-alt fa-5x text-muted mb-4"></i>
-                            <h3 class="h4 text-muted">Harta va fi adăugată</h3>
+                    <div class="p-3 p-md-4 bg-light rounded">
+                        <iframe
+                            src="https://www.google.com/maps?q=Varsol%C8%9Bului%2C+Crasna%2C+Romania%2C+457085&output=embed"
+                            width="100%"
+                            height="420"
+                            style="border:0;"
+                            allowfullscreen
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Locație Depozit Crasna"></iframe>
+                        <div class="text-center mt-3">
+                            <p class="mb-2">Varsolțului, Crasna, Romania, 457085</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Varsol%C8%9Bului%2C+Crasna%2C+Romania%2C+457085" target="_blank" class="btn btn-outline-warning btn-sm">
+                                Deschide în Google Maps
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -231,24 +282,7 @@
 <footer class="bg-black text-white py-4">
         <div class="container">
             <div class="row justify-content-center text-center">
-                <div class="col-12">
-                    <ul class="list-inline d-flex flex-wrap justify-content-center mb-2">
-                        <li class="list-inline-item me-3">
-                            <a href="index.html" class="text-white text-decoration-none">Prima Pagină</a>
-                        </li>
-                        <li class="list-inline-item me-3">
-                            <a href="despre-noi.html" class="text-white text-decoration-none">Despre Noi</a>
-                        </li>
-                        <li class="list-inline-item me-3">
-                            <a href="servicii.html" class="text-white text-decoration-none">Servicii</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="galerie-foto.html" class="text-white text-decoration-none">Galerie Foto</a>
-                        </li>
-                    </ul>
-                    <p class="mb-0 small">&copy; 2026 B-Masiv SRL. Toate drepturile sunt rezervate.</p>
-                </div>
-                <div class="col-12 text-center mt-3">
+                <div class="col-12 text-center">
                     <a href="https://www.facebook.com/BMasivhalemetalice/?ref=br_rs" target="_blank" class="text-white fs-3 me-3" aria-label="Facebook">
                         <i class="fab fa-facebook"></i>
                     </a>
@@ -258,6 +292,9 @@
                     <a href="https://www.tiktok.com/@b.masiv.beton" target="_blank" class="text-white fs-3 ms-3" aria-label="TikTok">
                         <i class="fab fa-tiktok"></i>
                     </a>
+                </div>
+                <div class="col-12 mt-3">
+                    <p class="mb-0 small">&copy; 2026 B-Masiv SRL. Toate drepturile sunt rezervate.</p>
                 </div>
             </div>
         </div>

@@ -59,14 +59,14 @@
                         <a class="nav-link" href="despre-noi.html">Despre Noi</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Divizii</a>
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departamente</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><h6 class="dropdown-header text-warning">Fabrica de Fasonat Oțel-Beton</h6></li>
                             <li><a class="dropdown-item" href="fasonare.html"><i class="fas fa-industry me-2"></i>Fabrica Fasonare</a></li>
                             <li><a class="dropdown-item ps-5" href="depozit-carei.html"><i class="fas fa-store me-2"></i>Depozit Magazin Carei</a></li>
                             <li><a class="dropdown-item ps-5" href="depozit-crasna.html"><i class="fas fa-store me-2"></i>Depozit Magazin Crasna</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item active" href="statie-betoane.html"><i class="fas fa-truck-loading me-2"></i>Stație de Betoane</a></li>
+                            <li><a class="dropdown-item active" href="statie-betoane.html"><i class="fas fa-truck-moving me-2"></i>Stație de Betoane</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -92,7 +92,7 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header d-flex align-items-center" style="height: 40vh; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/img/home-bg.jpg') center/cover no-repeat;">
+    <section class="page-header d-flex align-items-center" style="height: 40vh; background: url('assets/img/statie-beton/statie-hero.png') center/cover no-repeat;">
         <div class="container">
             <div class="text-white">
                 <h1 class="display-4 fw-bold mb-3">Stație de Betoane</h1>
@@ -109,41 +109,49 @@
     <!-- About Section -->
     <section class="py-5 bg-white">
         <div class="container">
-            <div class="mb-4">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="bg-warning" style="width: 5px; height: 40px; margin-right: 15px;"></div>
-                    <h2 class="h1 fw-bold mb-0">Despre Stația de Betoane</h2>
+            <div class="row g-4 align-items-stretch">
+                <div class="col-lg-8">
+                    <div class="p-4 p-md-5 bg-light rounded h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-warning" style="width: 5px; height: 40px; margin-right: 15px;"></div>
+                            <h2 class="h1 fw-bold mb-0">Despre Stația de Betoane</h2>
+                        </div>
+                        <p class="lead text-muted mb-0">
+                            Stația noastră de betoane oferă beton de înaltă calitate pentru proiecte de construcții de orice dimensiune. Dispunem de capacitate mare de producție și asigurăm livrare rapidă cu autobetoniere proprii.
+                        </p>
+                    </div>
                 </div>
-                <p class="lead text-muted">
-                    Stația noastră de betoane oferă beton de înaltă calitate pentru proiecte de construcții de orice dimensiune. Dispunem de capacitate mare de producție și asigurăm livrare rapidă cu autobetoniere proprii.
-                </p>
+                <div class="col-lg-4">
+                    <div class="p-4 p-md-5 bg-dark text-white rounded h-100 d-flex flex-column justify-content-center">
+                        <h3 class="h4 fw-bold mb-3">Comandă Rapidă</h3>
+                        <p class="mb-2">Comanda la nr de telefon: 0123456789</p>
+                        <a href="tel:0123456789" class="btn btn-warning mt-2">Sună Acum</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="row g-4 mt-3">
+            <div class="row g-4 mt-2">
                 <div class="col-md-4">
-                    <div class="d-flex align-items-start">
-                        <i class="fas fa-map-marker-alt text-warning fs-4 me-3 mt-1"></i>
-                        <div>
-                            <h3 class="h5 fw-bold mb-2">Adresă</h3>
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <h3 class="h5 fw-bold mb-3"><i class="fas fa-map-marker-alt text-warning me-2"></i>Adresă</h3>
                             <p class="text-muted mb-0">Pericei, Nr. 60/N, Sălaj, România</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="d-flex align-items-start">
-                        <i class="fas fa-phone text-warning fs-4 me-3 mt-1"></i>
-                        <div>
-                            <h3 class="h5 fw-bold mb-2">Telefon</h3>
-                            <p class="text-muted mb-0">0123 456 789</p>
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <h3 class="h5 fw-bold mb-3"><i class="fas fa-phone text-warning me-2"></i>Telefon</h3>
+                            <p class="text-muted mb-0"><a href="tel:0123456789" class="text-decoration-none text-muted">0123 456 789</a></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="d-flex align-items-start">
-                        <i class="fas fa-envelope text-warning fs-4 me-3 mt-1"></i>
-                        <div>
-                            <h3 class="h5 fw-bold mb-2">Email</h3>
-                            <p class="text-muted mb-0">statie-betoane@b-masiv.com</p>
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <h3 class="h5 fw-bold mb-3"><i class="fas fa-envelope text-warning me-2"></i>Email</h3>
+                            <p class="text-muted mb-0"><a href="mailto:statie-betoane@b-masiv.com" class="text-decoration-none text-muted">statie-betoane@b-masiv.com</a></p>
                         </div>
                     </div>
                 </div>
@@ -204,35 +212,13 @@
         </div>
     </section>
 
-
-
-    <!-- Footer -->
-  
-
     <!-- Bootstrap 5.3 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <footer class="bg-black text-white py-4">
         <div class="container">
             <div class="row justify-content-center text-center">
-                <div class="col-12">
-                    <ul class="list-inline d-flex flex-wrap justify-content-center mb-2">
-                        <li class="list-inline-item me-3">
-                            <a href="index.html" class="text-white text-decoration-none">Prima Pagină</a>
-                        </li>
-                        <li class="list-inline-item me-3">
-                            <a href="despre-noi.html" class="text-white text-decoration-none">Despre Noi</a>
-                        </li>
-                        <li class="list-inline-item me-3">
-                            <a href="servicii.html" class="text-white text-decoration-none">Servicii</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="galerie-foto.html" class="text-white text-decoration-none">Galerie Foto</a>
-                        </li>
-                    </ul>
-                    <p class="mb-0 small">&copy; 2026 B-Masiv SRL. Toate drepturile sunt rezervate.</p>
-                </div>
-                <div class="col-12 text-center mt-3">
+                <div class="col-12 text-center">
                     <a href="https://www.facebook.com/BMasivhalemetalice/?ref=br_rs" target="_blank" class="text-white fs-3 me-3" aria-label="Facebook">
                         <i class="fab fa-facebook"></i>
                     </a>
@@ -242,6 +228,9 @@
                     <a href="https://www.tiktok.com/@b.masiv.beton" target="_blank" class="text-white fs-3 ms-3" aria-label="TikTok">
                         <i class="fab fa-tiktok"></i>
                     </a>
+                </div>
+                <div class="col-12 mt-3">
+                    <p class="mb-0 small">&copy; 2026 B-Masiv SRL. Toate drepturile sunt rezervate.</p>
                 </div>
             </div>
         </div>
