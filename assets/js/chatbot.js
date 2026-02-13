@@ -1,155 +1,157 @@
 // ============================================
-// B-Masiv Chatbot Widget
+// B-Masiv Chatbot Widget (FAQ + AI Proxy)
 // ============================================
+// Notes:
+// - Local FAQ answers are prioritized (fast, reliable).
+// - AI answers are fetched via a same-origin (or localhost) proxy to avoid CORS.
 
-// Chatbot Configuration
 const chatbot = {
-    // Knowledge base with Romanian responses
-    knowledgeBase: {
-        // Greetings
-        'salut': {
-            response: 'Bună ziua! Sunt asistentul virtual B-Masiv. Cum vă pot ajuta astăzi?'
-        },
-        'buna': {
-            response: 'Bună ziua! Cu ce vă pot fi de ajutor?'
-        },
-        'hello': {
-            response: 'Bună ziua! Sunt aici să vă ajut. Ce informații doriți?'
-        },
-
-        // Navigation - Main pages
-        'pagina principala': {
-            response: 'Vă redirecționez către <a href="index.html">pagina principală</a>.'
-        },
-        'acasa': {
-            response: 'Vă pot duce la <a href="index.html">pagina principală</a>.'
-        },
-        'despre': {
-            response: 'Puteți afla mai multe despre compania noastră pe pagina <a href="despre-noi.html">Despre Noi</a>.'
-        },
-        'despre noi': {
-            response: 'Vă invit să vizitați pagina <a href="despre-noi.html">Despre Noi</a> pentru a afla istoria și valorile companiei B-Masiv.'
-        },
-        'servicii': {
-            response: 'Puteți vedea toate serviciile noastre pe pagina <a href="servicii.html">Servicii</a>. Oferim hale industriale, fasonare oțel beton, pardoseli industriale și multe altele!'
-        },
-        'galerie': {
-            response: 'Vizitați <a href="galerie-foto.html">Galeria Foto/Video</a> pentru a vedea proiectele noastre realizate.'
-        },
-        'foto': {
-            response: 'Avem o galerie bogată de fotografii! Vezi <a href="galerie-foto.html">Galeria Foto/Video</a>.'
-        },
-        'poze': {
-            response: 'Puteți vedea pozele cu proiectele noastre în <a href="galerie-foto.html">Galeria Foto/Video</a>.'
-        },
-
-        // Services - Specific
-        'hale': {
-            response: 'Suntem producători de hale industriale! Vezi galeria noastră de <a href="galerie-hale-industriale.html">Hale Industriale</a> sau pagina de <a href="servicii.html">Servicii</a>.'
-        },
-        'hale industriale': {
-            response: 'B-Masiv este producător de hale industriale. Vezi <a href="galerie-hale-industriale.html">Hale Industriale</a> pentru exemple de proiecte.'
-        },
-        'hale metalice': {
-            response: 'Oferim hale metalice second-hand și noi, la orice dimensiune. Detalii pe pagina <a href="servicii.html">Servicii</a>.'
-        },
-        'fasonare': {
-            response: 'Avem o <a href="fasonare.html">Fabrică de Fasonat Oțel-Beton</a> cu depozite în Carei și Crasna. Vezi și <a href="galerie-fasonare-fier.html">galeria de fasonare</a>.'
-        },
-        'fier beton': {
-            response: 'Oferim servicii de fasonare fier beton. Vezi <a href="fasonare.html">Fabrica de Fasonare</a> sau <a href="galerie-fasonare-fier.html">galeria noastră</a>.'
-        },
-        'otel beton': {
-            response: 'Fabrica noastră de fasonat oțel-beton este la dispoziția dvs. Vezi <a href="fasonare.html">Fabrica de Fasonare</a>.'
-        },
-        'pardoseli': {
-            response: 'Executăm pardoseli industriale turnate și elicopterizate. Vezi <a href="galerie-pardoseli.html">Galeria Pardoseli</a>.'
-        },
-        'pardoseli industriale': {
-            response: 'Oferim servicii profesionale de pardoseli industriale. Vezi <a href="galerie-pardoseli.html">Galeria Pardoseli</a>.'
-        },
-        'confectii': {
-            response: 'Confecționăm accesorii și confecții metalice pentru hale. Vezi <a href="galerie-confectii.html">Galeria Confecții</a>.'
-        },
-        'confectii metalice': {
-            response: 'Realizăm confecții metalice personalizate. Vezi <a href="galerie-confectii.html">Galeria Confecții</a>.'
-        },
-        'containere': {
-            response: 'Oferim containere tip birou. Vezi <a href="galerie-containere.html">Galeria Containere</a>.'
-        },
-        'container': {
-            response: 'Avem containere tip birou disponibile. Vezi <a href="galerie-containere.html">Galeria Containere</a>.'
-        },
-        'statie betoane': {
-            response: 'Dispunem de o <a href="statie-betoane.html">Stație de Betoane</a> cu capacitate mare și produse certificate.'
-        },
-        'beton': {
-            response: 'Oferim beton de calitate prin <a href="statie-betoane.html">Stația noastră de Betoane</a>.'
-        },
-
-        // Divisions/Locations
-        'divizii': {
-            response: 'Avem mai multe divizii: <a href="fasonare.html">Fabrica de Fasonare</a>, <a href="depozit-carei.html">Depozit Carei</a>, <a href="depozit-crasna.html">Depozit Crasna</a> și <a href="statie-betoane.html">Stație Betoane</a>.'
-        },
-        'depozit': {
-            response: 'Avem două depozite: <a href="depozit-carei.html">Depozit Carei</a> și <a href="depozit-crasna.html">Depozit Crasna</a>.'
-        },
-        'carei': {
-            response: 'Avem un depozit în Carei. Vezi <a href="depozit-carei.html">Depozit Carei</a>.'
-        },
-        'crasna': {
-            response: 'Avem un depozit în Crasna. Vezi <a href="depozit-crasna.html">Depozit Crasna</a>.'
-        },
-
-        // Contact Information
-        'contact': {
-            response: '📞 <strong>B-Masiv SRL</strong><br>Tel: (004) 0260 672 788<br>Email: <a href="mailto:contact@b-masiv.ro">contact@b-masiv.ro</a><br>Adresă: Pericei Nr. 60/N, Sălaj, România<br><br><strong>Fabrica Fasonare (Popescu Nicolae):</strong><br>Tel: (004) 0758 061 773'
-        },
-        'telefon': {
-            response: '📞 B-Masiv: (004) 0260 672 788<br>📞 Fabrica Fasonare: (004) 0758 061 773'
-        },
-        'email': {
-            response: '📧 Email: <a href="mailto:contact@b-masiv.ro">contact@b-masiv.ro</a>'
-        },
-        'adresa': {
-            response: '📍 Pericei Nr. 60/N, Sălaj, România'
-        },
-        'locatie': {
-            response: '📍 Suntem situați în Pericei Nr. 60/N, Sălaj, România. Vezi secțiunea <a href="index.html#contact">Contact</a>.'
-        },
-        'unde': {
-            response: '📍 Ne găsiți în Pericei Nr. 60/N, județul Sălaj, România.'
-        },
-
-        // Program
-        'program': {
-            response: '🕒 <strong>Program de lucru:</strong><br>Luni-Vineri: 09:00-17:00<br>Sâmbătă: 08:00-13:00<br>Duminică: Închis'
-        },
-        'orar': {
-            response: '🕒 Luni-Vineri: 09:00-17:00 | Sâmbătă: 08:00-13:00 | Duminică: Închis'
-        },
-
-        // Help
-        'ajutor': {
-            response: 'Pot să vă ajut cu informații despre:<br>• <strong>Servicii</strong> (hale, fasonare, pardoseli, etc.)<br>• <strong>Contact</strong> și program<br>• <strong>Divizii</strong> (Carei, Crasna, Stație Betoane)<br>• <strong>Galerie</strong> foto/video<br><br>Despre ce doriți să aflați?'
-        },
-        'info': {
-            response: 'Vă pot oferi informații despre serviciile noastre, locații, contact și program. Ce vă interesează?'
-        },
-
-        // Default responses
-        'multumesc': {
-            response: 'Cu plăcere! Dacă aveți alte întrebări, sunt aici să vă ajut.'
-        },
-        'mersi': {
-            response: 'Cu drag! Vă doresc o zi frumoasă!'
-        },
-        'pa': {
-            response: 'La revedere! Vă așteptăm pe site-ul nostru sau la sediu!'
-        }
+    ai: {
+        enabled: true,
+        // Local dev: Live Server runs on 127.0.0.1:5500, proxy on 127.0.0.1:3000
+        proxyEndpoint: (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')
+            ? 'http://127.0.0.1:3000/api/chat'
+            : '/api/chat',
+        healthEndpoint: (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')
+            ? 'http://127.0.0.1:3000/health'
+            : '/health',
+        apiKey: localStorage.getItem('cleverbot_api_key') || '',
+        timeoutMs: 12000
     },
 
-    // Initialize chatbot
+    state: {
+        lastIntent: null,
+        lastTopic: null
+    },
+
+    // Compact, intent-based FAQ. Patterns are tested in order.
+    intents: [
+        {
+            id: 'greeting',
+            patterns: [/\b(salut|buna|bun[ăa]|hello|hi)\b/i],
+            isHtml: false,
+            response: () => 'Buna ziua! Sunt asistentul virtual B-Masiv. Cu ce va pot ajuta?'
+        },
+        {
+            id: 'help',
+            patterns: [/\b(ajutor|help|info)\b/i],
+            isHtml: true,
+            response: () =>
+                'Va pot ajuta cu:<br>' +
+                '• <strong>Servicii</strong> (hale, fasonare, beton, pardoseli, confectii)<br>' +
+                '• <strong>Departamente / locatii</strong> (Carei, Crasna, statie betoane)<br>' +
+                '• <strong>Program</strong>, <strong>adresa</strong>, <strong>contact</strong><br>' +
+                'Spuneti-mi ce va intereseaza, de exemplu: <em>"beton"</em>, <em>"fasonare"</em>, <em>"program"</em>.'
+        },
+        {
+            id: 'services',
+            patterns: [/\b(servicii|solutii|ofert[ăa]|ce oferiti)\b/i],
+            isHtml: true,
+            response: () =>
+                'Serviciile noastre principale:<br>' +
+                '• <a href="servicii.html">Producator hale industriale</a><br>' +
+                '• <a href="fasonare.html">Fasonare otel-beton</a><br>' +
+                '• <a href="statie-betoane.html">Statie de betoane (livrare)</a><br>' +
+                '• <a href="galerie-pardoseli.html">Pardoseli industriale</a><br>' +
+                '• <a href="galerie-confectii.html">Confectii metalice</a><br>' +
+                '• <a href="galerie-containere.html">Containere tip birou</a><br>' +
+                'Doriti detalii la un serviciu anume?'
+        },
+        {
+            id: 'concrete',
+            patterns: [/\b(beton|statie betoane|sta[tț]ie betoane|pompa|autobetonier[ăa]|cif[ăa])\b/i],
+            isHtml: true,
+            response: () =>
+                'Pentru beton si livrare, vedeti <a href="statie-betoane.html">Statie de Betoane</a>.<br>' +
+                'Puteti comanda rapid la telefon: <strong>0745543664</strong>.'
+        },
+        {
+            id: 'rebar',
+            patterns: [/\b(fasonare|fier beton|otel[- ]beton|armatur[ăa])\b/i],
+            isHtml: true,
+            response: () =>
+                'Detalii despre fasonare: <a href="fasonare.html">Fabrica de Fasonat Otel-Beton</a>.<br>' +
+                'Puteti vedea si <a href="galerie-fasonare-fier.html">galeria</a> cu exemple.'
+        },
+        {
+            id: 'halls',
+            patterns: [/\b(hale|hale industriale|hale metalice|structur[ăa] metalic[ăa])\b/i],
+            isHtml: true,
+            response: () =>
+                'Suntem producatori de hale industriale. Vedeti exemple in <a href="galerie-hale-industriale.html">Galeria Hale Industriale</a>.'
+        },
+        {
+            id: 'floors',
+            patterns: [/\b(pardoseli|elicopterizat[ăa]|turnat[ăa])\b/i],
+            isHtml: true,
+            response: () =>
+                'Executam pardoseli industriale. Vedeti exemple in <a href="galerie-pardoseli.html">Galeria Pardoseli</a>.'
+        },
+        {
+            id: 'metal',
+            patterns: [/\b(confectii|confectii metalice|accesorii metalice)\b/i],
+            isHtml: true,
+            response: () =>
+                'Realizam confectii metalice. Vedeti <a href="galerie-confectii.html">Galeria Confectii</a>.'
+        },
+        {
+            id: 'containers',
+            patterns: [/\b(container|containere|birou)\b/i],
+            isHtml: true,
+            response: () =>
+                'Containere tip birou: <a href="galerie-containere.html">Galeria Containere</a>.'
+        },
+        {
+            id: 'departments',
+            patterns: [/\b(departamente|locatii|puncte de lucru|magazin|depozit)\b/i],
+            isHtml: true,
+            response: () =>
+                'Departamente / locatii:<br>' +
+                '• <a href="fasonare.html">Fabrica de Fasonare</a><br>' +
+                '• <a href="statie-betoane.html">Statie de Betoane</a><br>' +
+                '• <a href="depozit-carei.html">Magazin / Depozit Carei</a><br>' +
+                '• <a href="depozit-crasna.html">Magazin / Depozit Crasna</a>'
+        },
+        {
+            id: 'contact',
+            patterns: [/\b(contact|telefon|numar|email|e-?mail|whatsapp)\b/i],
+            isHtml: true,
+            response: () =>
+                '<strong>Contact</strong><br>' +
+                'Telefon: <a href="tel:+40260672788">(004) 0260 672 788</a><br>' +
+                'Email: <a href="mailto:contact@b-masiv.com">contact@b-masiv.com</a><br>' +
+                'Adresa: Pericei Nr. 60/N, Salaj, Romania<br>' +
+                'Puteti folosi si formularul din <a href="index.html#contact">Contact</a>.'
+        },
+        {
+            id: 'schedule',
+            patterns: [/\b(program|orar|deschis|inchis)\b/i],
+            isHtml: true,
+            response: () =>
+                '<strong>Program orientativ</strong><br>' +
+                'Luni-Vineri: 09:00-17:00<br>' +
+                'Sambata: 08:00-13:00<br>' +
+                'Duminica: Inchis'
+        },
+        {
+            id: 'address',
+            patterns: [/\b(adresa|locatie|unde sunteti|harta|google maps)\b/i],
+            isHtml: true,
+            response: () =>
+                '<strong>Locatie</strong><br>' +
+                'Pericei Nr. 60/N, Salaj, Romania.<br>' +
+                'Vezi harta in <a href="index.html#contact">Contact</a>.'
+        },
+        {
+            id: 'pricing',
+            patterns: [/\b(pret|cost|tarif|oferta|deviz)\b/i],
+            isHtml: true,
+            response: () =>
+                'Pentru un pret corect, avem nevoie de cateva detalii (cantitate, locatie, termen).<br>' +
+                'Trimiteti un mesaj in <a href="index.html#contact">Contact</a> sau sunati la <strong>(004) 0260 672 788</strong>.'
+        }
+    ],
+
     init() {
         this.chatBubble = document.getElementById('chat-bubble');
         this.chatWindow = document.getElementById('chat-window');
@@ -157,18 +159,20 @@ const chatbot = {
         this.chatInput = document.getElementById('chat-input');
         this.chatSendBtn = document.getElementById('chat-send-btn');
 
-        // Event listeners
+        if (!this.chatBubble || !this.chatWindow || !this.chatMessages || !this.chatInput || !this.chatSendBtn) {
+            // Widget not present on this page.
+            return;
+        }
+
         this.chatBubble.addEventListener('click', () => this.toggleChat());
         this.chatSendBtn.addEventListener('click', () => this.sendMessage());
         this.chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.sendMessage();
         });
 
-        // Show welcome message
         this.showWelcomeMessage();
     },
 
-    // Toggle chat window
     toggleChat() {
         const isOpen = this.chatWindow.classList.contains('show');
         if (isOpen) {
@@ -181,35 +185,33 @@ const chatbot = {
         }
     },
 
-    // Show welcome message
     showWelcomeMessage() {
-        const welcomeMsg = {
+        this.addMessage({
             type: 'bot',
-            text: 'Bună ziua! 👋 Sunt asistentul virtual B-Masiv. Vă pot ajuta să navigați pe site și să găsiți informații despre serviciile noastre.'
-        };
-        this.addMessage(welcomeMsg);
+            text: 'Buna ziua! Sunt asistentul virtual B-Masiv. Va pot ajuta cu servicii, departamente, program si contact.',
+            isHtml: false
+        });
 
-        // Add quick action buttons
-        setTimeout(() => {
-            this.addQuickActions();
-        }, 500);
+        setTimeout(() => this.addQuickActions(), 250);
     },
 
-    // Add quick action buttons
     addQuickActions() {
         const quickActionsHTML = `
             <div class="quick-actions">
-                <button class="quick-btn" onclick="chatbot.handleQuickAction('servicii')">
+                <button class="quick-btn" onclick="chatbot.handleQuickAction('Servicii')">
                     <i class="fas fa-tools"></i> Servicii
                 </button>
-                <button class="quick-btn" onclick="chatbot.handleQuickAction('contact')">
+                <button class="quick-btn" onclick="chatbot.handleQuickAction('Departamente')">
+                    <i class="fas fa-sitemap"></i> Departamente
+                </button>
+                <button class="quick-btn" onclick="chatbot.handleQuickAction('Program')">
+                    <i class="fas fa-clock"></i> Program
+                </button>
+                <button class="quick-btn" onclick="chatbot.handleQuickAction('Contact')">
                     <i class="fas fa-phone"></i> Contact
                 </button>
-                <button class="quick-btn" onclick="chatbot.handleQuickAction('galerie')">
-                    <i class="fas fa-images"></i> Galerie
-                </button>
-                <button class="quick-btn" onclick="chatbot.handleQuickAction('despre noi')">
-                    <i class="fas fa-info-circle"></i> Despre Noi
+                <button class="quick-btn" onclick="chatbot.handleQuickAction('Ajutor')">
+                    <i class="fas fa-question-circle"></i> Ajutor
                 </button>
             </div>
         `;
@@ -217,64 +219,203 @@ const chatbot = {
         this.scrollToBottom();
     },
 
-    // Handle quick action
-    handleQuickAction(keyword) {
-        this.addMessage({ type: 'user', text: keyword.charAt(0).toUpperCase() + keyword.slice(1) });
-        this.processMessage(keyword);
+    handleQuickAction(text) {
+        this.addMessage({ type: 'user', text, isHtml: false });
+        this.processMessage(text);
     },
 
-    // Send message
-    sendMessage() {
+    async sendMessage() {
         const message = this.chatInput.value.trim();
         if (!message) return;
 
-        // Add user message
-        this.addMessage({ type: 'user', text: message });
+        this.addMessage({ type: 'user', text: message, isHtml: false });
         this.chatInput.value = '';
 
-        // Process message
-        setTimeout(() => {
-            this.processMessage(message);
-        }, 500);
+        await this.processMessage(message);
     },
 
-    // Process message and generate response
-    processMessage(message) {
-        const lowerMessage = message.toLowerCase();
-        let response = null;
+    handleCommand(raw) {
+        const message = String(raw || '').trim();
+        if (!message.startsWith('/')) return false;
 
-        // Search for keywords in knowledge base
-        for (const [keyword, data] of Object.entries(this.knowledgeBase)) {
-            if (lowerMessage.includes(keyword)) {
-                response = data.response;
-                break;
-            }
+        const [cmd, ...rest] = message.split(' ');
+        const value = rest.join(' ').trim();
+
+        if (cmd === '/help') {
+            this.addMessage({
+                type: 'bot',
+                isHtml: true,
+                text:
+                    '<strong>Comenzi</strong><br>' +
+                    '• <code>/cleverkey CHEIE</code> seteaza cheia pentru AI<br>' +
+                    '• <code>/cleverreset</code> sterge cheia salvata<br>' +
+                    '• <code>/status</code> verifica proxy AI<br>' +
+                    '• <code>/clear</code> sterge conversatia'
+            });
+            return true;
         }
 
-        // Default response if no match
-        if (!response) {
-            response = 'Îmi pare rău, nu am înțeles întrebarea. Vă pot ajuta cu informații despre <strong>Servicii</strong>, <strong>Contact</strong>, <strong>Galerie</strong> sau <strong>Despre Noi</strong>. Scrieți o întrebare sau folosiți butoanele de mai jos.';
+        if (cmd === '/cleverkey') {
+            if (!value) {
+                this.addMessage({
+                    type: 'bot',
+                    text: this.ai.apiKey
+                        ? 'Cheia AI este setata in browser.'
+                        : 'Nu exista cheie setata. Foloseste: /cleverkey CHEIA_TA',
+                    isHtml: false
+                });
+                return true;
+            }
+            this.ai.apiKey = value;
+            localStorage.setItem('cleverbot_api_key', value);
+            this.addMessage({ type: 'bot', text: 'Cheia AI a fost salvata local.', isHtml: false });
+            return true;
+        }
 
-            // Show typing indicator
+        if (cmd === '/cleverreset') {
+            this.ai.apiKey = '';
+            localStorage.removeItem('cleverbot_api_key');
+            this.addMessage({ type: 'bot', text: 'Cheia AI a fost resetata.', isHtml: false });
+            return true;
+        }
+
+        if (cmd === '/clear') {
+            this.chatMessages.innerHTML = '';
+            this.showWelcomeMessage();
+            return true;
+        }
+
+        if (cmd === '/status') {
+            this.checkStatus();
+            return true;
+        }
+
+        return false;
+    },
+
+    async checkStatus() {
+        this.showTypingIndicator();
+        try {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 5000);
+            const res = await fetch(this.ai.healthEndpoint, { method: 'GET', signal: controller.signal });
+            clearTimeout(timeout);
+
+            if (!res.ok) {
+                const body = await res.text().catch(() => '');
+                throw new Error(`HTTP ${res.status}: ${body}`);
+            }
+
+            const data = await res.json().catch(() => ({}));
+            this.hideTypingIndicator();
+            this.addMessage({
+                type: 'bot',
+                isHtml: false,
+                text: `Status proxy: OK\nEndpoint: ${this.ai.proxyEndpoint}\nService: ${data.service || 'n/a'}`
+            });
+        } catch (err) {
+            this.hideTypingIndicator();
+            this.addMessage({
+                type: 'bot',
+                isHtml: false,
+                text: `Status proxy: indisponibil\nEndpoint: ${this.ai.proxyEndpoint}\nDetalii: ${err && err.message ? err.message : 'eroare'}`
+            });
+        }
+    },
+
+    findLocalIntent(message) {
+        for (const intent of this.intents) {
+            for (const pattern of intent.patterns) {
+                if (pattern.test(message)) {
+                    return intent;
+                }
+            }
+        }
+        return null;
+    },
+
+    async processMessage(message) {
+        if (this.handleCommand(message)) return;
+
+        const localIntent = this.findLocalIntent(message);
+        if (localIntent) {
+            this.state.lastIntent = localIntent.id;
             this.showTypingIndicator();
             setTimeout(() => {
                 this.hideTypingIndicator();
-                this.addMessage({ type: 'bot', text: response });
-                this.addQuickActions();
-            }, 800);
+                const text = typeof localIntent.response === 'function'
+                    ? localIntent.response({ state: this.state })
+                    : String(localIntent.response);
+                this.addMessage({ type: 'bot', text, isHtml: Boolean(localIntent.isHtml) });
+            }, 450);
             return;
         }
 
-        // Show typing indicator
+        // No local match: use AI
         this.showTypingIndicator();
-        setTimeout(() => {
+        try {
+            const aiText = await this.getAiResponse(message);
             this.hideTypingIndicator();
-            this.addMessage({ type: 'bot', text: response });
-        }, 800);
+            this.addMessage({ type: 'bot', text: aiText, isHtml: false });
+        } catch (err) {
+            this.hideTypingIndicator();
+            this.addMessage({
+                type: 'bot',
+                isHtml: true,
+                text:
+                    'Imi pare rau, momentan nu pot raspunde prin AI.<br>' +
+                    'Incercati una dintre optiunile: <strong>Servicii</strong>, <strong>Departamente</strong>, <strong>Program</strong>, <strong>Contact</strong>.<br>' +
+                    'Puteti verifica si <code>/status</code>.'
+            });
+            this.addQuickActions();
+
+            // Optional: log errors for debugging
+            // console.error('AI error:', err);
+        }
     },
 
-    // Add message to chat
+    async getAiResponse(userMessage) {
+        const payload = {
+            message: userMessage,
+            cleverbotKey: this.ai.apiKey || undefined
+        };
+
+        const data = await this.fetchJson(this.ai.proxyEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const text = data && (data.reply || data.response || data.message || data.text);
+        if (typeof text === 'string' && text.trim()) {
+            return text.trim();
+        }
+
+        throw new Error('AI proxy returned no reply');
+    },
+
+    async fetchJson(url, options) {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), this.ai.timeoutMs);
+        try {
+            const res = await fetch(url, { ...options, signal: controller.signal });
+            if (!res.ok) {
+                const errText = await res.text().catch(() => '');
+                throw new Error(`HTTP ${res.status}: ${errText}`);
+            }
+            return await res.json();
+        } finally {
+            clearTimeout(timeout);
+        }
+    },
+
     addMessage(message) {
+        const safeText = message.isHtml
+            ? String(message.text || '')
+            : this.escapeHtml(String(message.text || '')).replace(/\n/g, '<br>');
+
         const messageHTML = `
             <div class="chat-message ${message.type}">
                 ${message.type === 'bot' ? `
@@ -282,7 +423,7 @@ const chatbot = {
                         <i class="fas fa-robot"></i>
                     </div>
                 ` : ''}
-                <div class="message-content">${message.text}</div>
+                <div class="message-content">${safeText}</div>
                 ${message.type === 'user' ? `
                     <div class="message-avatar">
                         <i class="fas fa-user"></i>
@@ -290,11 +431,11 @@ const chatbot = {
                 ` : ''}
             </div>
         `;
+
         this.chatMessages.insertAdjacentHTML('beforeend', messageHTML);
         this.scrollToBottom();
     },
 
-    // Show typing indicator
     showTypingIndicator() {
         const typingHTML = `
             <div class="chat-message bot">
@@ -308,25 +449,33 @@ const chatbot = {
                 </div>
             </div>
         `;
+
         this.chatMessages.insertAdjacentHTML('beforeend', typingHTML);
         this.scrollToBottom();
     },
 
-    // Hide typing indicator
     hideTypingIndicator() {
         const typingIndicator = this.chatMessages.querySelector('.typing-indicator');
         if (typingIndicator) {
-            typingIndicator.closest('.chat-message').remove();
+            const wrapper = typingIndicator.closest('.chat-message');
+            if (wrapper) wrapper.remove();
         }
     },
 
-    // Scroll to bottom
+    escapeHtml(str) {
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    },
+
     scrollToBottom() {
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
     }
 };
 
-// Initialize chatbot when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     chatbot.init();
 });
