@@ -92,7 +92,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section d-flex align-items-center" style="min-height: 100vh; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/img/home-bg.jpg') center/cover no-repeat;">
+    <section class="hero-section d-flex align-items-start" style="min-height: 78vh; padding-top: 4rem; padding-bottom: 2.5rem; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/img/home-bg.jpg') center/cover no-repeat;">
         <div class="container text-white text-center">
             <h1 class="display-3 fw-bold mb-4">
                 <span class="text-warning">B-MASIV</span><br>
@@ -103,35 +103,7 @@
             </p>
             <p class="h5 mb-5 text-warning">Proiectare - Executie - Montaj Technic</p>
 
-            <!-- Inline Departamente Quick Links -->
-            <div class="row g-3 justify-content-center mb-5" style="max-width: 900px; margin: 0 auto;">
-                <div class="col-6 col-md-3">
-                    <a href="fasonare.html" class="btn btn-outline-light btn-lg w-100 py-3 entity-hero-btn">
-                        <i class="fas fa-industry d-block mb-2 fs-3 text-warning"></i>
-                        <small>Fabrica Fasonare</small>
-                    </a>
-                </div>
-                <div class="col-6 col-md-3">
-                    <a href="depozit-carei.html" class="btn btn-outline-light btn-lg w-100 py-3 entity-hero-btn">
-                        <i class="fas fa-store d-block mb-2 fs-3 text-warning"></i>
-                        <small>Depozit Carei</small>
-                    </a>
-                </div>
-                <div class="col-6 col-md-3">
-                    <a href="depozit-crasna.html" class="btn btn-outline-light btn-lg w-100 py-3 entity-hero-btn">
-                        <i class="fas fa-store d-block mb-2 fs-3 text-warning"></i>
-                        <small>Depozit Crasna</small>
-                    </a>
-                </div>
-                <div class="col-6 col-md-3">
-                    <a href="statie-betoane.html" class="btn btn-outline-light btn-lg w-100 py-3 entity-hero-btn">
-                        <i class="fas fa-truck-moving d-block mb-2 fs-3 text-warning"></i>
-                        <small>Stație Betoane</small>
-                    </a>
-                </div>
-            </div>
-
-            <a href="#entities" class="btn btn-warning btn-lg px-5 py-3 mb-4">
+            <a href="#servicii" class="btn btn-warning btn-lg px-5 py-3 mb-4">
                 Descoperă Serviciile
             </a>
         </div>
@@ -143,24 +115,29 @@
             <div class="mb-5">
                 <div class="d-flex align-items-center mb-3">
                     <div class="bg-warning" style="width: 5px; height: 40px; margin-right: 15px;"></div>
-                    <h2 class="h1 fw-bold mb-0">Departamentele Noastre</h2>
+                    <h2 class="h2 fw-bold mb-0">Departamentele Noastre</h2>
                 </div>
             </div>
 
             <div class="row g-4">
                 <!-- Fabrica de Fasonat -->
                 <div class="col-lg-6">
-                    <div class="card h-100 border-0 shadow-sm entity-card">
-                        <img src="assets/img/fasonare/2-faso.jpeg" class="card-img-top" alt="Fabrica de Fasonat Oțel-Beton" style="height: 300px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h3 class="card-title h4 fw-bold mb-3">Fabrica de Fasonat Oțel-Beton</h3>
-                            <p class="card-text flex-grow-1">
-                                Fabrică specializată în fasonarea fierului beton cu depozite în Carei și Crasna. Dispunem de echipamente moderne și personal calificat pentru executarea rapidă și precisă a comenzilor.
+                    <div class="card h-100 border-0 entity-card-modern">
+                        <div class="entity-media">
+                            <img src="assets/img/fasonare/2-faso.jpeg" class="img-fluid w-100" alt="Fabrica de Fasonat Oțel-Beton" style="height: 210px; object-fit: cover;">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-end mb-2">
+                                <span class="entity-mini">Producție & Logistică</span>
+                            </div>
+                            <h3 class="h5 fw-bold mb-2">Fabrica de Fasonat Oțel-Beton</h3>
+                            <p class="text-muted small mb-3">
+                                Producție rapidă și precisă pentru armături, cu depozite în Carei și Crasna.
                             </p>
-                            <div class="d-flex gap-2 flex-wrap align-items-center mt-3">
-                                <a href="fasonare.html" class="btn btn-warning">Află mai multe</a>
-                                <a href="depozit-carei.html" class="btn btn-warning">Depozit Carei</a>
-                                <a href="depozit-crasna.html" class="btn btn-warning">Depozit Crasna</a>
+                            <div class="d-flex gap-2 flex-wrap mt-auto">
+                                <a href="fasonare.html" class="btn btn-warning btn-sm">Detalii</a>
+                                <a href="depozit-carei.html" class="btn btn-outline-warning btn-sm">Depozit Carei</a>
+                                <a href="depozit-crasna.html" class="btn btn-outline-warning btn-sm">Depozit Crasna</a>
                             </div>
                         </div>
                     </div>
@@ -168,14 +145,19 @@
 
                 <!-- Statie de Betoane -->
                 <div class="col-lg-6">
-                    <div class="card h-100 border-0 shadow-sm entity-card">
-                        <img src="assets/img/statie-beton/statie.jpg" class="card-img-top" alt="Stație de Betoane" style="height: 300px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <h3 class="card-title h4 fw-bold mb-3">Stație de Betoane</h3>
-                            <p class="card-text flex-grow-1">
-                                Stație de betoane cu capacitate mare, oferind beton de calitate pentru proiecte de orice dimensiune. Asigurăm livrare rapidă și produse certificate conform standardelor în vigoare.
+                    <div class="card h-100 border-0 entity-card-modern">
+                        <div class="entity-media">
+                            <img src="assets/img/statie-beton/statie.jpg" class="img-fluid w-100" alt="Stație de Betoane" style="height: 210px; object-fit: cover;">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-end mb-2">
+                                <span class="entity-mini">Livrare Beton</span>
+                            </div>
+                            <h3 class="h5 fw-bold mb-2">Stație de Betoane</h3>
+                            <p class="text-muted small mb-3">
+                                Producție și livrare beton pentru proiecte rezidențiale și industriale.
                             </p>
-                            <a href="statie-betoane.html" class="btn btn-warning mt-3">Află mai multe</a>
+                            <a href="statie-betoane.html" class="btn btn-warning btn-sm mt-auto align-self-start">Detalii</a>
                         </div>
                     </div>
                 </div>
@@ -186,83 +168,58 @@
     <!-- Services Section -->
     <section id="servicii" class="py-5 bg-light">
         <div class="container">
-            <div class="mb-5 text-center">
-                <div class="d-flex align-items-center justify-content-center mb-3">
+            <div class="mb-5 text-start">
+                <div class="d-flex align-items-center mb-3">
                     <div class="bg-warning" style="width: 5px; height: 40px; margin-right: 15px;"></div>
-                    <h2 class="h1 fw-bold mb-0">Serviciile noastre</h2>
+                    <h2 class="h2 fw-bold mb-0">Serviciile noastre</h2>
                 </div>
-                <p class="lead text-muted mx-auto" style="max-width: 900px;">
-                    Dorința noastră este să vă ajutăm să realizați visurile in afaceri precum și cele legate de confortul căminului d-voastră.
+                <p class="lead text-muted mb-0" style="max-width: 900px;">
+                    Oferim soluții complete și servicii adaptate nevoilor clienților noștri, cu accent pe calitate, eficiență și rezultate durabile.
                 </p>
             </div>
 
-            <div class="row g-4">
-                <!-- Service 1: Hale Industriale -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm service-card">
-                        <a href="galerie-hale-industriale.html">
-                            <img src="assets/img/hale-img.jpg" class="card-img-top" alt="Producător Hale Industriale" style="height: 250px; object-fit: cover;">
-                        </a>
-                        <div class="card-body text-center">
-                            <h3 class="h5 fw-bold">Producător Hale Industriale</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 2: Fasonare Fier Beton -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm service-card">
-                        <a href="galerie-fasonare-fier.html">
-                            <img src="assets/img/fasonare/2-faso.jpeg" class="card-img-top" alt="Fasonare Fier Beton" style="height: 250px; object-fit: cover;">
-                        </a>
-                        <div class="card-body text-center">
-                            <h3 class="h5 fw-bold">Fasonare Fier Beton</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 3: Proiectare si Evaluare -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm service-card">
-                        <img src="assets/img/prioiectare-si-evaluare.png" class="card-img-top" alt="Proiectare si Evaluare" style="height: 250px; object-fit: cover;">
-                        <div class="card-body text-center">
-                            <h3 class="h5 fw-bold">Proiectare si Evaluare</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 4: Confectii Metalice -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm service-card">
-                        <a href="galerie-confectii.html">
-                            <img src="assets/img/confectii.jpg" class="card-img-top" alt="Confecții Metalice" style="height: 250px; object-fit: cover;">
-                        </a>
-                        <div class="card-body text-center">
-                            <h3 class="h5 fw-bold">Confecții Metalice</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 5: Pardoseli Industriale -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm service-card">
-                        <a href="galerie-pardoseli.html">
-                            <img src="assets/img/pardoseli.jpg" class="card-img-top" alt="Pardoseli Industriale" style="height: 250px; object-fit: cover;">
-                        </a>
-                        <div class="card-body text-center">
-                            <h3 class="h5 fw-bold">Pardoseli Industriale</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 6: Containere Tip Birou -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm service-card">
-                        <a href="galerie-containere.html">
-                            <img src="assets/img/containere/1-container.jpeg" class="card-img-top" alt="Containere Tip Birou" style="height: 250px; object-fit: cover;">
-                        </a>
-                        <div class="card-body text-center">
-                            <h3 class="h5 fw-bold">Containere Tip Birou</h3>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="p-3 p-md-4 bg-white rounded border shadow-sm">
+                        <span class="fw-bold"><i class="fas fa-building text-warning me-2"></i>B-MASIV</span>
+                        <div class="ms-3 mt-3 ps-3 border-start border-2 border-warning-subtle">
+                            <div class="accordion shadow-sm" id="entityHierarchyAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="entityOneHeading">
+                                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#entityOne" aria-expanded="true" aria-controls="entityOne">
+                                            <i class="fas fa-industry text-warning me-2"></i>Fabrica de Fasonat Oțel-Beton
+                                        </button>
+                                    </h2>
+                                    <div id="entityOne" class="accordion-collapse collapse show" aria-labelledby="entityOneHeading" data-bs-parent="#entityHierarchyAccordion">
+                                        <div class="accordion-body">
+                                            <div class="ms-3 d-grid gap-2">
+                                                <a href="depozit-carei.html" class="btn btn-outline-warning btn-sm text-start">
+                                                    <i class="fas fa-store me-2"></i>Depozit Magazin Carei
+                                                </a>
+                                                <a href="depozit-crasna.html" class="btn btn-outline-warning btn-sm text-start">
+                                                    <i class="fas fa-store me-2"></i>Depozit Magazin Crasna
+                                                </a>
+                                            </div>
+                                            <div class="mt-3">
+                                                <a href="fasonare.html" class="btn btn-warning btn-sm">Vezi Fabrica</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="entityTwoHeading">
+                                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#entityTwo" aria-expanded="false" aria-controls="entityTwo">
+                                            <i class="fas fa-truck-moving text-warning me-2"></i>Stație de Betoane
+                                        </button>
+                                    </h2>
+                                    <div id="entityTwo" class="accordion-collapse collapse" aria-labelledby="entityTwoHeading" data-bs-parent="#entityHierarchyAccordion">
+                                        <div class="accordion-body">
+                                            Divizie separată pentru producție și livrare beton.
+                                            <div class="mt-2"><a href="statie-betoane.html" class="btn btn-warning btn-sm">Vezi Stația</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -273,13 +230,13 @@
     <!-- Contact Section -->
     <section id="contact" class="py-5 bg-white">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="h1 fw-bold mb-3">Contactează-ne</h2>
-                <p class="lead text-muted mb-0">Alege divizia potrivită sau trimite-ne direct un mesaj.</p>
+            <div class="text-start mb-5">
+                <h2 class="h2 fw-bold mb-3">Contactează-ne</h2>
+                <p class="lead text-muted mb-0">Suntem aici pentru a răspunde întrebărilor tale. Trimite-ne un mesaj și revenim în cel mai scurt timp.</p>
             </div>
 
-            <div class="row justify-content-center contact-layout">
-                <div class="col-lg-8 d-flex">
+            <div class="row g-4 justify-content-center contact-layout align-items-stretch">
+                <div class="col-lg-6 d-flex">
                     <div class="contact-form-simple contact-form-panel p-4 p-md-5 h-100">
                         <h3 class="h4 fw-bold text-center mb-3">Trimite-ne un mesaj</h3>
                         <p class="text-muted text-center mb-4">Completarea formularului durează mai puțin de un minut.</p>
@@ -307,6 +264,27 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex">
+                    <div class="contact-form-simple contact-form-panel p-4 p-md-5 w-100 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-warning" style="width: 5px; height: 30px; margin-right: 12px;"></div>
+                            <h3 class="h4 fw-bold mb-0">Locație</h3>
+                        </div>
+                        <div class="small mb-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                            <div><i class="fas fa-map-marker-alt text-warning me-2"></i><strong>Adresă:</strong> Pericei, Nr. 60/N, Sălaj, România</div>
+                        </div>
+                        <iframe
+                            src="https://www.google.com/maps?q=47.2226686,22.8779472&z=14&output=embed"
+                            width="100%"
+                            height="380"
+                            class="rounded-3"
+                            style="border:0;"
+                            allowfullscreen
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Locație B-Masiv Pericei"></iframe>
                     </div>
                 </div>
             </div>

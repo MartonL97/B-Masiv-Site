@@ -468,6 +468,66 @@ img {
     border-width: 2px;
 }
 
+/* Modern Department Cards (Index) */
+.entity-card-modern {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #ece6dc;
+    background: #fff;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.entity-card-modern:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 164, 0, 0.5);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.14);
+}
+
+.entity-card-modern .entity-media {
+    position: relative;
+}
+
+.entity-card-modern .entity-media::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0));
+    pointer-events: none;
+}
+
+.entity-card-modern .entity-media img {
+    transition: transform 0.35s ease;
+}
+
+.entity-card-modern:hover .entity-media img {
+    transform: scale(1.03);
+}
+
+.entity-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #7a4a00;
+    background: rgba(255, 164, 0, 0.18);
+    border: 1px solid rgba(255, 164, 0, 0.35);
+    border-radius: 999px;
+    padding: 0.3rem 0.65rem;
+}
+
+.entity-mini {
+    font-size: 0.78rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
 /* --- Service Cards --- */
 .service-card {
     border-radius: 8px;
