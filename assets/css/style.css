@@ -83,11 +83,25 @@ img {
     transition: var(--transition);
 }
 
+.navbar .navbar-nav {
+    align-items: center;
+}
+
+.navbar .nav-item {
+    display: flex;
+    align-items: center;
+}
+
 .navbar .nav-link {
     font-family: var(--font-family);
     font-size: 15px;
     font-weight: 400;
     color: var(--text-light) !important;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    line-height: 1.2;
+    min-height: 42px;
     padding: 8px 16px !important;
     margin: 0 2px;
     border: 1px solid transparent;
