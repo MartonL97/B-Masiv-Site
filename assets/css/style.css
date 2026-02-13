@@ -1855,3 +1855,26 @@ footer .fs-3:hover {
         padding: 6px 12px;
     }
 }
+
+/* -----------------------------
+   Hero Typography (index.html)
+   ----------------------------- */
+.hero-section h1 {
+    font-size: clamp(1.9rem, 3.2vw, 2.6rem) !important;
+    line-height: 1.08;
+}
+
+.hero-section .lead {
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.hero-section .h5 {
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+/* Slight downward shift so hero content feels centered under sticky nav */
+.hero-section > .container {
+    padding-top: 1.25rem;
+}
