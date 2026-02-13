@@ -309,25 +309,63 @@
                 </div>
             </div>
 
-            <div class="row g-2">
-                <!-- Depozit Carei -->
-                <div class="col-lg-6">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <img src="assets/img/depozit-carei.jpg" class="card-img-top" alt="Depozit / Magazin Carei" style="height: 145px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column p-2">
-                            <h3 class="card-title h6 fw-bold mb-2">Depozit / Magazin Carei</h3>
-                            <a href="depozit-carei.html" class="btn btn-warning btn-sm py-1 px-3 mt-auto align-self-start">Detalii</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="accordion shadow-sm" id="magazineAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="magazineHeading">
+                                <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#magazineCollapse" aria-expanded="true" aria-controls="magazineCollapse">
+                                    <span class="d-flex align-items-center gap-2">
+                                        <i class="fas fa-store text-warning"></i>
+                                        <span>Magazinele noastre</span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="magazineCollapse" class="accordion-collapse collapse show" aria-labelledby="magazineHeading" data-bs-parent="#magazineAccordion">
+                                <div class="accordion-body">
+                                    <div class="row g-2">
+                                        <!-- Depozit Carei -->
+                                        <div class="col-12">
+                                            <div class="card border-0 shadow-sm">
+                                                <div class="row g-0 align-items-center">
+                                                    <div class="col-4 col-md-3">
+                                                        <img src="assets/img/depozit-carei.jpg" class="img-fluid rounded-start w-100" alt="Depozit / Magazin Carei" style="height: 95px; object-fit: cover;">
+                                                    </div>
+                                                    <div class="col-8 col-md-9">
+                                                        <div class="card-body p-2 p-md-3 d-flex flex-column justify-content-center">
+                                                            <h3 class="card-title h6 fw-bold mb-1">Depozit / Magazin Carei</h3>
+                                                            <div class="small text-muted mb-2">
+                                                                <div class="mb-1"><i class="fas fa-map-marker-alt text-warning me-1"></i>str Calea Armatei Romane nr 18</div>
+                                                            </div>
+                                                            <a href="depozit-carei.html" class="btn btn-warning btn-sm py-1 px-3 align-self-start">Detalii</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                <!-- Depozit Crasna -->
-                <div class="col-lg-6">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <img src="assets/img/depozit-crasna.jpg" class="card-img-top" alt="Depozit / Magazin Crasna" style="height: 145px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column p-2">
-                            <h3 class="card-title h6 fw-bold mb-2">Depozit / Magazin Crasna</h3>
-                            <a href="depozit-crasna.html" class="btn btn-warning btn-sm py-1 px-3 mt-auto align-self-start">Detalii</a>
+                                        <!-- Depozit Crasna -->
+                                        <div class="col-12">
+                                            <div class="card border-0 shadow-sm">
+                                                <div class="row g-0 align-items-center">
+                                                    <div class="col-4 col-md-3">
+                                                        <img src="assets/img/depozit-crasna.jpg" class="img-fluid rounded-start w-100" alt="Depozit / Magazin Crasna" style="height: 95px; object-fit: cover;">
+                                                    </div>
+                                                    <div class="col-8 col-md-9">
+                                                        <div class="card-body p-2 p-md-3 d-flex flex-column justify-content-center">
+                                                            <h3 class="card-title h6 fw-bold mb-1">Depozit / Magazin Crasna</h3>
+                                                            <div class="small text-muted mb-2">
+                                                                <div class="mb-1"><i class="fas fa-map-marker-alt text-warning me-1"></i>Varsolțului, Crasna, Romania, 457085</div>
+                                                            </div>
+                                                            <a href="depozit-crasna.html" class="btn btn-warning btn-sm py-1 px-3 align-self-start">Detalii</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
