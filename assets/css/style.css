@@ -1878,3 +1878,57 @@ footer .fs-3:hover {
 .hero-section > .container {
     padding-top: 1.25rem;
 }
+
+/* Fasonare contact section sizing/highlight */
+.fasonare-contact-list {
+    font-size: 1.12rem;
+    line-height: 1.5;
+    color: #252525;
+    background: linear-gradient(180deg, #fffdf8 0%, #fff8ec 100%);
+    border: 1px solid rgba(255, 164, 0, 0.28);
+    border-radius: 12px;
+    padding: 0.55rem 0.85rem;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.fasonare-contact-list strong {
+    font-weight: 700;
+    color: #111;
+}
+
+.fasonare-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(255, 164, 0, 0.22);
+}
+
+.fasonare-contact-item:last-child {
+    border-bottom: none;
+}
+
+.fasonare-contact-item i {
+    width: 22px;
+    text-align: center;
+}
+
+.fasonare-phone-link {
+    color: #c67600;
+    font-weight: 800;
+    margin-left: 0.15rem;
+    letter-spacing: 0.1px;
+}
+
+.fasonare-phone-link:hover {
+    color: #9f6400;
+}
+
+.fasonare-contact-item a:not(.fasonare-phone-link) {
+    color: #b56f00;
+    font-weight: 700;
+}
+
+.fasonare-contact-item a:not(.fasonare-phone-link):hover {
+    color: #9f6400;
+}
