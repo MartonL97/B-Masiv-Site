@@ -1,22 +1,12 @@
 // ============================================
-// B-Masiv Chatbot Widget (FAQ + AI Proxy)
+// B-Masiv Chatbot Widget (Static FAQ)
 // ============================================
 // Notes:
-// - Local FAQ answers are prioritized (fast, reliable).
-// - AI answers are fetched via a same-origin (or localhost) proxy to avoid CORS.
+// - Works fully static (HTML/CSS/JS only), no backend/API required.
 
 const chatbot = {
     ai: {
-        enabled: true,
-        // Local dev: Live Server runs on 127.0.0.1:5500, proxy on 127.0.0.1:3000
-        proxyEndpoint: (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')
-            ? 'http://127.0.0.1:3000/api/chat'
-            : '/api/chat',
-        healthEndpoint: (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')
-            ? 'http://127.0.0.1:3000/health'
-            : '/health',
-        apiKey: localStorage.getItem('cleverbot_api_key') || '',
-        timeoutMs: 12000
+        enabled: false
     },
 
     state: {
@@ -247,35 +237,9 @@ const chatbot = {
                 isHtml: true,
                 text:
                     '<strong>Comenzi</strong><br>' +
-                    '• <code>/cleverkey CHEIE</code> seteaza cheia pentru AI<br>' +
-                    '• <code>/cleverreset</code> sterge cheia salvata<br>' +
-                    '• <code>/status</code> verifica proxy AI<br>' +
+                    '• <code>/status</code> verifica modul chatbot<br>' +
                     '• <code>/clear</code> sterge conversatia'
             });
-            return true;
-        }
-
-        if (cmd === '/cleverkey') {
-            if (!value) {
-                this.addMessage({
-                    type: 'bot',
-                    text: this.ai.apiKey
-                        ? 'Cheia AI este setata in browser.'
-                        : 'Nu exista cheie setata. Foloseste: /cleverkey CHEIA_TA',
-                    isHtml: false
-                });
-                return true;
-            }
-            this.ai.apiKey = value;
-            localStorage.setItem('cleverbot_api_key', value);
-            this.addMessage({ type: 'bot', text: 'Cheia AI a fost salvata local.', isHtml: false });
-            return true;
-        }
-
-        if (cmd === '/cleverreset') {
-            this.ai.apiKey = '';
-            localStorage.removeItem('cleverbot_api_key');
-            this.addMessage({ type: 'bot', text: 'Cheia AI a fost resetata.', isHtml: false });
             return true;
         }
 
@@ -294,33 +258,11 @@ const chatbot = {
     },
 
     async checkStatus() {
-        this.showTypingIndicator();
-        try {
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 5000);
-            const res = await fetch(this.ai.healthEndpoint, { method: 'GET', signal: controller.signal });
-            clearTimeout(timeout);
-
-            if (!res.ok) {
-                const body = await res.text().catch(() => '');
-                throw new Error(`HTTP ${res.status}: ${body}`);
-            }
-
-            const data = await res.json().catch(() => ({}));
-            this.hideTypingIndicator();
-            this.addMessage({
-                type: 'bot',
-                isHtml: false,
-                text: `Status proxy: OK\nEndpoint: ${this.ai.proxyEndpoint}\nService: ${data.service || 'n/a'}`
-            });
-        } catch (err) {
-            this.hideTypingIndicator();
-            this.addMessage({
-                type: 'bot',
-                isHtml: false,
-                text: `Status proxy: indisponibil\nEndpoint: ${this.ai.proxyEndpoint}\nDetalii: ${err && err.message ? err.message : 'eroare'}`
-            });
-        }
+        this.addMessage({
+            type: 'bot',
+            isHtml: false,
+            text: 'Mod static activ: chatbotul foloseste doar raspunsuri locale (fara server/backend).'
+        });
     },
 
     findLocalIntent(message) {
@@ -351,64 +293,20 @@ const chatbot = {
             return;
         }
 
-        // No local match: use AI
+        // No local match: static fallback
         this.showTypingIndicator();
-        try {
-            const aiText = await this.getAiResponse(message);
-            this.hideTypingIndicator();
-            this.addMessage({ type: 'bot', text: aiText, isHtml: false });
-        } catch (err) {
+        setTimeout(() => {
             this.hideTypingIndicator();
             this.addMessage({
                 type: 'bot',
                 isHtml: true,
                 text:
-                    'Imi pare rau, momentan nu pot raspunde prin AI.<br>' +
+                    'Imi pare rau, momentan nu am un raspuns exact.<br>' +
                     'Incercati una dintre optiunile: <strong>Servicii</strong>, <strong>Departamente</strong>, <strong>Program</strong>, <strong>Contact</strong>.<br>' +
-                    'Puteti verifica si <code>/status</code>.'
+                    'Chatbotul ruleaza in mod static (fara server).'
             });
             this.addQuickActions();
-
-            // Optional: log errors for debugging
-            // console.error('AI error:', err);
-        }
-    },
-
-    async getAiResponse(userMessage) {
-        const payload = {
-            message: userMessage,
-            cleverbotKey: this.ai.apiKey || undefined
-        };
-
-        const data = await this.fetchJson(this.ai.proxyEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
-
-        const text = data && (data.reply || data.response || data.message || data.text);
-        if (typeof text === 'string' && text.trim()) {
-            return text.trim();
-        }
-
-        throw new Error('AI proxy returned no reply');
-    },
-
-    async fetchJson(url, options) {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), this.ai.timeoutMs);
-        try {
-            const res = await fetch(url, { ...options, signal: controller.signal });
-            if (!res.ok) {
-                const errText = await res.text().catch(() => '');
-                throw new Error(`HTTP ${res.status}: ${errText}`);
-            }
-            return await res.json();
-        } finally {
-            clearTimeout(timeout);
-        }
+        }, 450);
     },
 
     addMessage(message) {

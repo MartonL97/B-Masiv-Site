@@ -250,7 +250,7 @@
                     <div class="contact-form-simple contact-form-panel p-4 p-md-5 h-100">
                         <h3 class="h4 fw-bold text-center mb-3">Senden Sie uns eine Nachricht</h3>
                         <p class="text-muted text-center mb-4">Das Ausfüllen des Formulars dauert weniger als eine Minute.</p>
-                        <form action="mailto:contact@b-masiv.ro" method="post" enctype="text/plain">
+                        <form class="js-contact-mailto" data-mailto="marton.lakatos@b-masiv.ro" action="mailto:marton.lakatos@b-masiv.ro" method="post" enctype="text/plain">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <input type="text" class="form-control contact-input" name="Nume" placeholder="Name *" required>
@@ -341,7 +341,10 @@
         </div>
     </div>
 
-    <!-- Chatbot Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="assets/js/contact-mailto.js?v=20260218-11"></script>
+
+<!-- Chatbot Script -->
     <script src="assets/js/chatbot.js?v=20260213-10"></script>
 
 <footer class="bg-black text-white py-4">
