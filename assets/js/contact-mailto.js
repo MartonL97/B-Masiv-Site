@@ -10,6 +10,54 @@
         serviceId: 'service_nqbja9d',
         templateId: 'template_t43l1zg'
     };
+    var I18N = {
+        ro: {
+            sending: 'Se trimite...',
+            limitReached: 'Ai atins limita de 3 mesaje în 24h.\nÎncearcă din nou mai târziu.',
+            emailJsNotConfigured: 'EmailJS nu este configurat. Se deschide email local.',
+            success: 'Mesajul tău a fost trimis cu succes.\nÎți mulțumim! Revenim către tine în cel mai scurt timp.',
+            fallbackError: 'Trimiterea directă a eșuat. Se deschide email local.'
+        },
+        de: {
+            sending: 'Wird gesendet...',
+            limitReached: 'Du hast das Limit von 3 Nachrichten in 24h erreicht.\nBitte versuche es später erneut.',
+            emailJsNotConfigured: 'EmailJS ist nicht konfiguriert. E-Mail wird lokal geöffnet.',
+            success: 'Deine Nachricht wurde erfolgreich gesendet.\nVielen Dank! Wir melden uns schnellstmöglich bei dir.',
+            fallbackError: 'Direktes Senden ist fehlgeschlagen. E-Mail wird lokal geöffnet.'
+        },
+        hu: {
+            sending: 'Küldés...',
+            limitReached: 'Elérted a 3 üzenet/24 óra korlátot.\nKérjük, próbáld meg később újra.',
+            emailJsNotConfigured: 'Az EmailJS nincs beállítva. Megnyitjuk a helyi e-mail klienst.',
+            success: 'Az üzeneted sikeresen elküldve.\nKöszönjük! Hamarosan válaszolunk.',
+            fallbackError: 'A közvetlen küldés nem sikerült. Megnyitjuk a helyi e-mail klienst.'
+        },
+        en: {
+            sending: 'Sending...',
+            limitReached: 'You reached the limit of 3 messages in 24h.\nPlease try again later.',
+            emailJsNotConfigured: 'EmailJS is not configured. Opening local email client.',
+            success: 'Your message was sent successfully.\nThank you! We will get back to you shortly.',
+            fallbackError: 'Direct sending failed. Opening local email client.'
+        }
+    };
+
+    function getLang() {
+        var lang = (document.documentElement.getAttribute('lang') || 'ro').toLowerCase();
+        if (lang.indexOf('de') === 0) return 'de';
+        if (lang.indexOf('hu') === 0) return 'hu';
+        if (lang.indexOf('en') === 0) return 'en';
+        return 'ro';
+    }
+
+    function t(key) {
+        var lang = getLang();
+        return (I18N[lang] && I18N[lang][key]) || I18N.ro[key] || key;
+    }
+    var EMAIL_LIMIT = {
+        storageKey: 'bmasiv_email_timestamps',
+        maxPerWindow: 3,
+        windowMs: 24 * 60 * 60 * 1000
+    };
 
     function getValue(form, name) {
         var el = form.querySelector('[name="' + name + '"]');
@@ -31,6 +79,43 @@
             EMAILJS_CONFIG.templateId,
             params
         );
+    }
+
+    function getEmailTimestamps() {
+        try {
+            var raw = localStorage.getItem(EMAIL_LIMIT.storageKey);
+            var parsed = raw ? JSON.parse(raw) : [];
+            if (!Array.isArray(parsed)) return [];
+            return parsed.filter(function (ts) {
+                return Number.isFinite(ts);
+            });
+        } catch (_) {
+            return [];
+        }
+    }
+
+    function saveEmailTimestamps(timestamps) {
+        localStorage.setItem(EMAIL_LIMIT.storageKey, JSON.stringify(timestamps));
+    }
+
+    function getActiveEmailTimestamps() {
+        var now = Date.now();
+        var valid = getEmailTimestamps().filter(function (ts) {
+            return now - ts < EMAIL_LIMIT.windowMs;
+        });
+        saveEmailTimestamps(valid);
+        return valid;
+    }
+
+    function canSendEmail() {
+        var active = getActiveEmailTimestamps();
+        return active.length < EMAIL_LIMIT.maxPerWindow;
+    }
+
+    function markEmailSent() {
+        var active = getActiveEmailTimestamps();
+        active.push(Date.now());
+        saveEmailTimestamps(active);
     }
 
     function ensureToastStyles() {
@@ -103,13 +188,19 @@
 
         var sendBtn = form.querySelector('button[type="submit"]');
         var originalBtnHtml = sendBtn ? sendBtn.innerHTML : '';
+
+        if (!canSendEmail()) {
+            showToast(t('limitReached'), 'error');
+            return;
+        }
+
         if (sendBtn) {
             sendBtn.disabled = true;
-            sendBtn.innerHTML = 'Se trimite...';
+            sendBtn.innerHTML = t('sending');
         }
 
         if (!emailJsConfigured()) {
-            showToast('EmailJS nu este configurat. Se deschide email local.', 'info');
+            showToast(t('emailJsNotConfigured'), 'info');
             window.location.href = mailto;
             if (sendBtn) {
                 sendBtn.disabled = false;
@@ -130,10 +221,11 @@
             message: message || '-',
             full_message: simpleMessage
         }).then(function () {
-            showToast('Mesajul tău a fost trimis cu succes.\nÎți mulțumim! Revenim către tine în cel mai scurt timp.', 'success');
+            markEmailSent();
+            showToast(t('success'), 'success');
             form.reset();
         }).catch(function () {
-            showToast('Trimiterea directă a eșuat. Se deschide email local.', 'error');
+            showToast(t('fallbackError'), 'error');
             window.location.href = mailto;
         }).finally(function () {
             if (sendBtn) {

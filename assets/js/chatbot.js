@@ -10,6 +10,10 @@ const chatbot = {
         apiUrl: 'https://api.openai.com/v1/chat/completions',
         model: 'gpt-4o-mini',
         timeoutMs: 20000,
+        storageKey: 'bmasiv_ai_timestamps',
+        maxPerHour: 30,
+        windowMs: 60 * 60 * 1000,
+        minIntervalMs: 4000,
         // Hardcoded by request; localStorage /apikey can override.
         hardcodedKey: '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'
     },
@@ -300,13 +304,63 @@ const chatbot = {
 
     async checkStatus() {
         const hasKey = Boolean(this.ai.hardcodedKey && this.ai.hardcodedKey.trim());
+        const quota = this.getAiQuota();
         this.addMessage({
             type: 'bot',
             isHtml: false,
             text: hasKey
-                ? 'Chatbot activ: FAQ local + OpenAI direct din browser.'
+                ? `Chatbot activ: FAQ local + OpenAI direct din browser.\nLimită AI: ${quota.remaining}/${this.ai.maxPerHour} rămase în ultima oră.`
                 : 'Chatbot activ: doar FAQ local (lipseste cheia OpenAI).'
         });
+    },
+
+    getAiTimestamps() {
+        try {
+            const raw = localStorage.getItem(this.ai.storageKey);
+            const parsed = raw ? JSON.parse(raw) : [];
+            if (!Array.isArray(parsed)) return [];
+            return parsed.filter((ts) => Number.isFinite(ts));
+        } catch (_) {
+            return [];
+        }
+    },
+
+    saveAiTimestamps(timestamps) {
+        localStorage.setItem(this.ai.storageKey, JSON.stringify(timestamps));
+    },
+
+    getActiveAiTimestamps() {
+        const now = Date.now();
+        const active = this.getAiTimestamps().filter((ts) => now - ts < this.ai.windowMs);
+        this.saveAiTimestamps(active);
+        return active;
+    },
+
+    getAiQuota() {
+        const active = this.getActiveAiTimestamps();
+        const remaining = Math.max(0, this.ai.maxPerHour - active.length);
+        return { active, remaining };
+    },
+
+    canCallAi() {
+        const now = Date.now();
+        const active = this.getActiveAiTimestamps();
+        if (active.length >= this.ai.maxPerHour) {
+            return { ok: false, reason: 'quota' };
+        }
+        if (active.length > 0) {
+            const lastTs = active[active.length - 1];
+            if (now - lastTs < this.ai.minIntervalMs) {
+                return { ok: false, reason: 'cooldown' };
+            }
+        }
+        return { ok: true, reason: '' };
+    },
+
+    markAiCall() {
+        const active = this.getActiveAiTimestamps();
+        active.push(Date.now());
+        this.saveAiTimestamps(active);
     },
 
     findLocalIntent(message) {
@@ -343,6 +397,11 @@ const chatbot = {
             if (!this.ai.enabled || !this.ai.hardcodedKey || !this.ai.hardcodedKey.trim()) {
                 throw new Error('missing_api_key');
             }
+            const aiLimit = this.canCallAi();
+            if (!aiLimit.ok) {
+                throw new Error(aiLimit.reason === 'quota' ? 'ai_quota_exceeded' : 'ai_cooldown');
+            }
+            this.markAiCall();
             const aiText = await this.getAiResponse(message);
             this.hideTypingIndicator();
             this.addMessage({
@@ -352,6 +411,22 @@ const chatbot = {
             });
         } catch (err) {
             this.hideTypingIndicator();
+            if (err && err.message === 'ai_quota_exceeded') {
+                this.addMessage({
+                    type: 'bot',
+                    isHtml: false,
+                    text: 'Ai atins limita de mesaje AI pentru ultima oră. Încearcă din nou mai târziu.'
+                });
+                return;
+            }
+            if (err && err.message === 'ai_cooldown') {
+                this.addMessage({
+                    type: 'bot',
+                    isHtml: false,
+                    text: 'Trimite mesajele puțin mai rar. Așteaptă câteva secunde și încearcă din nou.'
+                });
+                return;
+            }
             this.addMessage({
                 type: 'bot',
                 isHtml: true,
