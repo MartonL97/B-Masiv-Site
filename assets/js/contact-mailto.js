@@ -33,6 +33,36 @@
         );
     }
 
+    function ensureToastStyles() {
+        if (document.getElementById('bmasiv-toast-style')) return;
+        var style = document.createElement('style');
+        style.id = 'bmasiv-toast-style';
+        style.textContent =
+            '.bmasiv-toast{position:fixed;left:50%;top:18px;z-index:99999;width:min(92vw,460px);padding:12px 14px;border-radius:10px;color:#fff;font:600 15px/1.35 Arial,Helvetica,sans-serif;text-align:center;white-space:pre-line;box-shadow:0 12px 24px rgba(0,0,0,.22);opacity:0;transform:translateX(-50%) translateY(-10px);transition:all .25s ease}' +
+            '.bmasiv-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}' +
+            '.bmasiv-toast.success{background:#198754}' +
+            '.bmasiv-toast.error{background:#dc3545}' +
+            '.bmasiv-toast.info{background:#1f1f1f}';
+        document.head.appendChild(style);
+    }
+
+    function showToast(message, type) {
+        ensureToastStyles();
+        var toast = document.createElement('div');
+        toast.className = 'bmasiv-toast ' + (type || 'info');
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        requestAnimationFrame(function () {
+            toast.classList.add('show');
+        });
+        setTimeout(function () {
+            toast.classList.remove('show');
+            setTimeout(function () {
+                if (toast.parentNode) toast.parentNode.removeChild(toast);
+            }, 250);
+        }, 2800);
+    }
+
     function onSubmit(e) {
         e.preventDefault();
 
@@ -79,6 +109,7 @@
         }
 
         if (!emailJsConfigured()) {
+            showToast('EmailJS nu este configurat. Se deschide email local.', 'info');
             window.location.href = mailto;
             if (sendBtn) {
                 sendBtn.disabled = false;
@@ -99,9 +130,10 @@
             message: message || '-',
             full_message: simpleMessage
         }).then(function () {
-            alert('Mesaj trimis cu succes.');
+            showToast('Mesajul tău a fost trimis cu succes.\nÎți mulțumim! Revenim către tine în cel mai scurt timp.', 'success');
             form.reset();
         }).catch(function () {
+            showToast('Trimiterea directă a eșuat. Se deschide email local.', 'error');
             window.location.href = mailto;
         }).finally(function () {
             if (sendBtn) {

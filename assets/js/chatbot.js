@@ -6,7 +6,12 @@
 
 const chatbot = {
     ai: {
-        enabled: false
+        enabled: true,
+        apiUrl: 'https://api.openai.com/v1/chat/completions',
+        model: 'gpt-4o-mini',
+        timeoutMs: 20000,
+        // Hardcoded by request; localStorage /apikey can override.
+        hardcodedKey: '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'
     },
 
     state: {
@@ -154,6 +159,11 @@ const chatbot = {
             return;
         }
 
+        const keyFromStorage = localStorage.getItem('openai_api_key');
+        if (keyFromStorage && keyFromStorage.trim()) {
+            this.ai.hardcodedKey = keyFromStorage.trim();
+        }
+
         this.chatBubble.addEventListener('click', () => this.toggleChat());
         this.chatSendBtn.addEventListener('click', () => this.sendMessage());
         this.chatInput.addEventListener('keypress', (e) => {
@@ -237,8 +247,39 @@ const chatbot = {
                 isHtml: true,
                 text:
                     '<strong>Comenzi</strong><br>' +
+                    '• <code>/apikey CHEIA_TA</code> seteaza cheia AI local<br>' +
+                    '• <code>/clearkey</code> sterge cheia AI locala<br>' +
                     '• <code>/status</code> verifica modul chatbot<br>' +
                     '• <code>/clear</code> sterge conversatia'
+            });
+            return true;
+        }
+
+        if (cmd === '/apikey') {
+            if (!value) {
+                this.addMessage({
+                    type: 'bot',
+                    isHtml: false,
+                    text: 'Folosire: /apikey CHEIA_TA'
+                });
+                return true;
+            }
+            this.ai.hardcodedKey = value;
+            localStorage.setItem('openai_api_key', value);
+            this.addMessage({
+                type: 'bot',
+                isHtml: false,
+                text: 'Cheia AI a fost salvată local în browser.'
+            });
+            return true;
+        }
+
+        if (cmd === '/clearkey') {
+            localStorage.removeItem('openai_api_key');
+            this.addMessage({
+                type: 'bot',
+                isHtml: false,
+                text: 'Cheia AI locală a fost ștearsă. Se folosește cheia hardcoded.'
             });
             return true;
         }
@@ -258,10 +299,13 @@ const chatbot = {
     },
 
     async checkStatus() {
+        const hasKey = Boolean(this.ai.hardcodedKey && this.ai.hardcodedKey.trim());
         this.addMessage({
             type: 'bot',
             isHtml: false,
-            text: 'Mod static activ: chatbotul foloseste doar raspunsuri locale (fara server/backend).'
+            text: hasKey
+                ? 'Chatbot activ: FAQ local + OpenAI direct din browser.'
+                : 'Chatbot activ: doar FAQ local (lipseste cheia OpenAI).'
         });
     },
 
@@ -293,20 +337,75 @@ const chatbot = {
             return;
         }
 
-        // No local match: static fallback
+        // No local match: AI fallback
         this.showTypingIndicator();
-        setTimeout(() => {
+        try {
+            if (!this.ai.enabled || !this.ai.hardcodedKey || !this.ai.hardcodedKey.trim()) {
+                throw new Error('missing_api_key');
+            }
+            const aiText = await this.getAiResponse(message);
+            this.hideTypingIndicator();
+            this.addMessage({
+                type: 'bot',
+                isHtml: false,
+                text: aiText
+            });
+        } catch (err) {
             this.hideTypingIndicator();
             this.addMessage({
                 type: 'bot',
                 isHtml: true,
                 text:
                     'Imi pare rau, momentan nu am un raspuns exact.<br>' +
-                    'Incercati una dintre optiunile: <strong>Servicii</strong>, <strong>Departamente</strong>, <strong>Program</strong>, <strong>Contact</strong>.<br>' +
-                    'Chatbotul ruleaza in mod static (fara server).'
+                    'Incearca una dintre optiunile: <strong>Servicii</strong>, <strong>Departamente</strong>, <strong>Program</strong>, <strong>Contact</strong>.'
             });
             this.addQuickActions();
-        }, 450);
+        }
+    },
+
+    async getAiResponse(userMessage) {
+        const payload = {
+            model: this.ai.model,
+            messages: [
+                {
+                    role: 'system',
+                    content: 'Ești asistent virtual pentru B-Masiv. Răspunde scurt, clar, în română, orientat pe servicii, locații și contact.'
+                },
+                {
+                    role: 'user',
+                    content: userMessage
+                }
+            ],
+            temperature: 0.3
+        };
+
+        const data = await this.fetchJson(this.ai.apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.ai.hardcodedKey}`
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const text = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+        if (!text) throw new Error('empty_ai_response');
+        return String(text).trim();
+    },
+
+    async fetchJson(url, options) {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), this.ai.timeoutMs);
+        try {
+            const res = await fetch(url, { ...options, signal: controller.signal });
+            if (!res.ok) {
+                const errTxt = await res.text().catch(() => '');
+                throw new Error(`AI HTTP ${res.status}: ${errTxt}`);
+            }
+            return await res.json();
+        } finally {
+            clearTimeout(timeout);
+        }
     },
 
     addMessage(message) {
