@@ -10,6 +10,12 @@
         serviceId: 'service_nqbja9d',
         templateId: 'template_t43l1zg'
     };
+    var TEMPLATE_BY_DEPARTMENT = {
+        'Ofertare': 'template_0ztzd3r',
+        'Magazin Carei': 'template_t43l1zg',
+        'Magazin Crasna': 'template_t43l1zg',
+        'Producator confectii metalice': 'template_t43l1zg'
+    };
     var I18N = {
         ro: {
             sending: 'Se trimite...',
@@ -73,10 +79,14 @@
         );
     }
 
-    function sendViaEmailJS(params) {
+    function getTemplateIdForDepartment(department) {
+        return TEMPLATE_BY_DEPARTMENT[department] || EMAILJS_CONFIG.templateId;
+    }
+
+    function sendViaEmailJS(templateId, params) {
         return window.emailjs.send(
             EMAILJS_CONFIG.serviceId,
-            EMAILJS_CONFIG.templateId,
+            templateId,
             params
         );
     }
@@ -156,12 +166,15 @@
         var name = getValue(form, 'Nume');
         var email = getValue(form, 'Email');
         var phone = getValue(form, 'Telefon');
+        var department = getValue(form, 'Departament');
         var subject = getValue(form, 'Subiect') || 'Cerere de pe site';
         var message = getValue(form, 'Mesaj');
-        var cleanSubject = 'Cerere website B-Masiv: ' + subject;
+        var cleanSubject = 'Cerere website B-Masiv [' + (department || 'General') + ']: ' + subject;
         var submittedAt = new Date().toLocaleString('ro-RO');
+        var templateId = getTemplateIdForDepartment(department);
 
         var bodyLines = [
+            'Departament: ' + (department || '-'),
             'Nume: ' + (name || '-'),
             'Email: ' + (email || '-'),
             'Telefon: ' + (phone || '-'),
@@ -177,6 +190,7 @@
 
         var simpleMessage = [
             'Data: ' + submittedAt,
+            'Departament: ' + (department || '-'),
             'Nume: ' + (name || '-'),
             'Email: ' + (email || '-'),
             'Telefon: ' + (phone || '-'),
@@ -209,10 +223,11 @@
             return;
         }
 
-        sendViaEmailJS({
+        sendViaEmailJS(templateId, {
             to_email: EMAIL_TARGET,
             to: EMAIL_TARGET,
             recipient_email: EMAIL_TARGET,
+            department: department || '-',
             subject: cleanSubject,
             submitted_at: submittedAt,
             from_name: name || '-',
