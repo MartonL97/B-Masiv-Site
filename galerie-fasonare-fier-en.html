@@ -199,5 +199,37 @@
             </div>
         </div>
     </footer>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-container">
+        <button id="chat-bubble" aria-label="Deschide chat">
+            <i class="fas fa-comment-dots"></i>
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div id="chat-window">
+            <div id="chat-header">
+                <div class="bot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="bot-info">
+                    <h3>Asistent B-Masiv</h3>
+                    <p>Cum vă pot ajuta?</p>
+                </div>
+            </div>
+
+            <div id="chat-messages"></div>
+
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Scrie un mesaj..." aria-label="Mesaj chat">
+                <button id="chat-send-btn" aria-label="Trimite mesaj">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/chatbot.js?v=20260218-13"></script>
+
 </body>
 </html>
