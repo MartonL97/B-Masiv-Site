@@ -1,5 +1,5 @@
 // ============================================
-// B-Masiv Chatbot Widget (Static FAQ)
+// B-Masiv Chatbot Widget (AI-first)
 // ============================================
 // Notes:
 // - Works fully static (HTML/CSS/JS only), no backend/API required.
@@ -18,136 +18,54 @@ const chatbot = {
         hardcodedKey: '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'
     },
 
-    state: {
-        lastIntent: null,
-        lastTopic: null
-    },
-
-    // Compact, intent-based FAQ. Patterns are tested in order.
-    intents: [
+    quickResponses: [
         {
-            id: 'greeting',
-            patterns: [/\b(salut|buna|bun[ăa]|hello|hi)\b/i],
-            isHtml: false,
-            response: () => 'Buna ziua! Sunt asistentul virtual B-Masiv. Cu ce va pot ajuta?'
+            id: 'phones',
+            patterns: [/\b(telefon|telefoane|numar|numere|sun[ăa]|call)\b/i],
+            isHtml: true,
+            text:
+                '<strong>Telefoane utile</strong><br>' +
+                '• Contact general: <a href="tel:+40260672788">(004) 0260 672 788</a><br>' +
+                '• Stație Betoane: <a href="tel:0745543664">0745 543 664</a><br>' +
+                '• Fabrica Fasonare: <a href="tel:+40758061773">+40 758 061 773</a><br>' +
+                '• Magazin Carei: <a href="tel:0755130861">(0755) 130 861</a><br>' +
+                '• Magazin Crasna: <a href="tel:0774436522">0774 436 522</a>'
         },
         {
-            id: 'help',
-            patterns: [/\b(ajutor|help|info)\b/i],
+            id: 'emails',
+            patterns: [/\b(email|mail|e-?mail|adresa de email)\b/i],
             isHtml: true,
-            response: () =>
-                'Va pot ajuta cu:<br>' +
-                '• <strong>Servicii</strong> (hale, fasonare, beton, pardoseli, confectii)<br>' +
-                '• <strong>Departamente / locatii</strong> (Carei, Crasna, statie betoane)<br>' +
-                '• <strong>Program</strong>, <strong>adresa</strong>, <strong>contact</strong><br>' +
-                'Spuneti-mi ce va intereseaza, de exemplu: <em>"beton"</em>, <em>"fasonare"</em>, <em>"program"</em>.'
-        },
-        {
-            id: 'services',
-            patterns: [/\b(servicii|solutii|ofert[ăa]|ce oferiti)\b/i],
-            isHtml: true,
-            response: () =>
-                'Serviciile noastre principale:<br>' +
-                '• <a href="servicii.html">Producator hale industriale</a><br>' +
-                '• <a href="fasonare.html">Fasonare otel-beton</a><br>' +
-                '• <a href="statie-betoane.html">Statie de betoane (livrare)</a><br>' +
-                '• <a href="galerie-pardoseli.html">Pardoseli industriale</a><br>' +
-                '• <a href="galerie-confectii.html">Confectii metalice</a><br>' +
-                '• <a href="galerie-containere.html">Containere tip birou</a><br>' +
-                'Doriti detalii la un serviciu anume?'
-        },
-        {
-            id: 'concrete',
-            patterns: [/\b(beton|statie betoane|sta[tț]ie betoane|pompa|autobetonier[ăa]|cif[ăa])\b/i],
-            isHtml: true,
-            response: () =>
-                'Pentru beton si livrare, vedeti <a href="statie-betoane.html">Statie de Betoane</a>.<br>' +
-                'Puteti comanda rapid la telefon: <strong>0745543664</strong>.'
-        },
-        {
-            id: 'rebar',
-            patterns: [/\b(fasonare|fier beton|otel[- ]beton|armatur[ăa])\b/i],
-            isHtml: true,
-            response: () =>
-                'Detalii despre fasonare: <a href="fasonare.html">Fabrica de Fasonat Otel-Beton</a>.<br>' +
-                'Puteti vedea si <a href="galerie-fasonare-fier.html">galeria</a> cu exemple.'
-        },
-        {
-            id: 'halls',
-            patterns: [/\b(hale|hale industriale|hale metalice|structur[ăa] metalic[ăa])\b/i],
-            isHtml: true,
-            response: () =>
-                'Suntem producatori de hale industriale. Vedeti exemple in <a href="galerie-hale-industriale.html">Galeria Hale Industriale</a>.'
-        },
-        {
-            id: 'floors',
-            patterns: [/\b(pardoseli|elicopterizat[ăa]|turnat[ăa])\b/i],
-            isHtml: true,
-            response: () =>
-                'Executam pardoseli industriale. Vedeti exemple in <a href="galerie-pardoseli.html">Galeria Pardoseli</a>.'
-        },
-        {
-            id: 'metal',
-            patterns: [/\b(confectii|confectii metalice|accesorii metalice)\b/i],
-            isHtml: true,
-            response: () =>
-                'Realizam confectii metalice. Vedeti <a href="galerie-confectii.html">Galeria Confectii</a>.'
-        },
-        {
-            id: 'containers',
-            patterns: [/\b(container|containere|birou)\b/i],
-            isHtml: true,
-            response: () =>
-                'Containere tip birou: <a href="galerie-containere.html">Galeria Containere</a>.'
-        },
-        {
-            id: 'departments',
-            patterns: [/\b(departamente|locatii|puncte de lucru|magazin|depozit)\b/i],
-            isHtml: true,
-            response: () =>
-                'Departamente / locatii:<br>' +
-                '• <a href="fasonare.html">Fabrica de Fasonare</a><br>' +
-                '• <a href="statie-betoane.html">Statie de Betoane</a><br>' +
-                '• <a href="depozit-carei.html">Magazin / Depozit Carei</a><br>' +
-                '• <a href="depozit-crasna.html">Magazin / Depozit Crasna</a>'
-        },
-        {
-            id: 'contact',
-            patterns: [/\b(contact|telefon|numar|email|e-?mail|whatsapp)\b/i],
-            isHtml: true,
-            response: () =>
-                '<strong>Contact</strong><br>' +
-                'Telefon: <a href="tel:+40260672788">(004) 0260 672 788</a><br>' +
-                'Email: <a href="mailto:contact@b-masiv.com">contact@b-masiv.com</a><br>' +
-                'Adresa: Pericei Nr. 60/N, Salaj, Romania<br>' +
-                'Puteti folosi si formularul din <a href="index.html#contact">Contact</a>.'
-        },
-        {
-            id: 'schedule',
-            patterns: [/\b(program|orar|deschis|inchis)\b/i],
-            isHtml: true,
-            response: () =>
-                '<strong>Program orientativ</strong><br>' +
-                'Luni-Vineri: 09:00-17:00<br>' +
-                'Sambata: 08:00-13:00<br>' +
-                'Duminica: Inchis'
+            text:
+                '<strong>Emailuri utile</strong><br>' +
+                '• Contact: <a href="mailto:contact@b-masiv.com">contact@b-masiv.com</a><br>' +
+                '• Fabrica Fasonare: <a href="mailto:fabrica-fasonare@b-masiv.com">fabrica-fasonare@b-masiv.com</a><br>' +
+                '• Magazin Carei: <a href="mailto:magazin-carei@b-masiv.com">magazin-carei@b-masiv.com</a><br>' +
+                '• Magazin Crasna: <a href="mailto:magazin-crasna@b-masiv.com">magazin-crasna@b-masiv.com</a><br>' +
+                '• Stație Betoane: <a href="mailto:statie-betoane@b-masiv.com">statie-betoane@b-masiv.com</a>'
         },
         {
             id: 'address',
-            patterns: [/\b(adresa|locatie|unde sunteti|harta|google maps)\b/i],
+            patterns: [/\b(adres[ăa]|locatie|loca[țt]ie|unde|harta|map)\b/i],
             isHtml: true,
-            response: () =>
-                '<strong>Locatie</strong><br>' +
-                'Pericei Nr. 60/N, Salaj, Romania.<br>' +
-                'Vezi harta in <a href="index.html#contact">Contact</a>.'
+            text:
+                '<strong>Adresă principală</strong><br>' +
+                'Pericei, Nr. 60/N, Sălaj, România.<br>' +
+                '<a href="index.html#contact">Vezi harta</a><br><br>' +
+                '<strong>Magazine</strong><br>' +
+                '• Carei: str Calea Armatei Romane nr 18<br>' +
+                '• Crasna: Varsolțului, Crasna, România, 457085'
         },
         {
-            id: 'pricing',
-            patterns: [/\b(pret|cost|tarif|oferta|deviz)\b/i],
+            id: 'services',
+            patterns: [/\b(servicii|ce oferiti|ofert[ăa]|solutii|departamente)\b/i],
             isHtml: true,
-            response: () =>
-                'Pentru un pret corect, avem nevoie de cateva detalii (cantitate, locatie, termen).<br>' +
-                'Trimiteti un mesaj in <a href="index.html#contact">Contact</a> sau sunati la <strong>(004) 0260 672 788</strong>.'
+            text:
+                '<strong>Servicii / Departamente</strong><br>' +
+                '• <a href="fasonare.html">Producator Confectii Metalice</a><br>' +
+                '• <a href="statie-betoane.html">Stație de Betoane</a><br>' +
+                '• <a href="depozit-carei.html">Depozit Magazin Carei</a><br>' +
+                '• <a href="depozit-crasna.html">Depozit Magazin Crasna</a><br>' +
+                '• <a href="servicii.html">Toate serviciile</a>'
         }
     ],
 
@@ -192,40 +110,9 @@ const chatbot = {
     showWelcomeMessage() {
         this.addMessage({
             type: 'bot',
-            text: 'Buna ziua! Sunt asistentul virtual B-Masiv. Va pot ajuta cu servicii, departamente, program si contact.',
+            text: 'Buna ziua! Sunt asistentul virtual B-Masiv. Scrieti intrebarea dvs. si va raspund direct prin AI.',
             isHtml: false
         });
-
-        setTimeout(() => this.addQuickActions(), 250);
-    },
-
-    addQuickActions() {
-        const quickActionsHTML = `
-            <div class="quick-actions">
-                <button class="quick-btn" onclick="chatbot.handleQuickAction('Servicii')">
-                    <i class="fas fa-tools"></i> Servicii
-                </button>
-                <button class="quick-btn" onclick="chatbot.handleQuickAction('Departamente')">
-                    <i class="fas fa-sitemap"></i> Departamente
-                </button>
-                <button class="quick-btn" onclick="chatbot.handleQuickAction('Program')">
-                    <i class="fas fa-clock"></i> Program
-                </button>
-                <button class="quick-btn" onclick="chatbot.handleQuickAction('Contact')">
-                    <i class="fas fa-phone"></i> Contact
-                </button>
-                <button class="quick-btn" onclick="chatbot.handleQuickAction('Ajutor')">
-                    <i class="fas fa-question-circle"></i> Ajutor
-                </button>
-            </div>
-        `;
-        this.chatMessages.insertAdjacentHTML('beforeend', quickActionsHTML);
-        this.scrollToBottom();
-    },
-
-    handleQuickAction(text) {
-        this.addMessage({ type: 'user', text, isHtml: false });
-        this.processMessage(text);
     },
 
     async sendMessage() {
@@ -309,8 +196,8 @@ const chatbot = {
             type: 'bot',
             isHtml: false,
             text: hasKey
-                ? `Chatbot activ: FAQ local + OpenAI direct din browser.\nLimită AI: ${quota.remaining}/${this.ai.maxPerHour} rămase în ultima oră.`
-                : 'Chatbot activ: doar FAQ local (lipseste cheia OpenAI).'
+                ? `Chatbot activ: AI direct din browser.\nLimită AI: ${quota.remaining}/${this.ai.maxPerHour} rămase în ultima oră.`
+                : 'Chatbot activ: AI indisponibil (lipseste cheia OpenAI).'
         });
     },
 
@@ -363,12 +250,10 @@ const chatbot = {
         this.saveAiTimestamps(active);
     },
 
-    findLocalIntent(message) {
-        for (const intent of this.intents) {
-            for (const pattern of intent.patterns) {
-                if (pattern.test(message)) {
-                    return intent;
-                }
+    findQuickResponse(message) {
+        for (const item of this.quickResponses) {
+            for (const pattern of item.patterns) {
+                if (pattern.test(message)) return item;
             }
         }
         return null;
@@ -377,21 +262,16 @@ const chatbot = {
     async processMessage(message) {
         if (this.handleCommand(message)) return;
 
-        const localIntent = this.findLocalIntent(message);
-        if (localIntent) {
-            this.state.lastIntent = localIntent.id;
-            this.showTypingIndicator();
-            setTimeout(() => {
-                this.hideTypingIndicator();
-                const text = typeof localIntent.response === 'function'
-                    ? localIntent.response({ state: this.state })
-                    : String(localIntent.response);
-                this.addMessage({ type: 'bot', text, isHtml: Boolean(localIntent.isHtml) });
-            }, 450);
+        const quick = this.findQuickResponse(message);
+        if (quick) {
+            this.addMessage({
+                type: 'bot',
+                isHtml: Boolean(quick.isHtml),
+                text: quick.text
+            });
             return;
         }
 
-        // No local match: AI fallback
         this.showTypingIndicator();
         try {
             if (!this.ai.enabled || !this.ai.hardcodedKey || !this.ai.hardcodedKey.trim()) {
@@ -429,12 +309,9 @@ const chatbot = {
             }
             this.addMessage({
                 type: 'bot',
-                isHtml: true,
-                text:
-                    'Imi pare rau, momentan nu am un raspuns exact.<br>' +
-                    'Incearca una dintre optiunile: <strong>Servicii</strong>, <strong>Departamente</strong>, <strong>Program</strong>, <strong>Contact</strong>.'
+                isHtml: false,
+                text: 'Raspuns AI indisponibil momentan. Va rugam incercati din nou in cateva momente.'
             });
-            this.addQuickActions();
         }
     },
 
