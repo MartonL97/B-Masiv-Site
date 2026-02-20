@@ -986,6 +986,10 @@ img {
     background: rgba(0, 0, 0, 0.6);
 }
 
+.page-header.page-header-light::before {
+    background: rgba(0, 0, 0, 0.35);
+}
+
 .page-header > * {
     position: relative;
     z-index: 1;
