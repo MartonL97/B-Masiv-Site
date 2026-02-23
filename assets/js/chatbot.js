@@ -25,11 +25,11 @@ const chatbot = {
             isHtml: true,
             text:
                 '<strong>Telefoane utile</strong><br>' +
-                '• Contact general: <a href="tel:+40260672788">(004) 0260 672 788</a><br>' +
-                '• Stație Betoane: <a href="tel:0745543664">0745 543 664</a><br>' +
-                '• Fabrica Fasonare: <a href="tel:+40758061773">+40 758 061 773</a><br>' +
-                '• Magazin Carei: <a href="tel:0755130861">(0755) 130 861</a><br>' +
-                '• Magazin Crasna: <a href="tel:0774436522">0774 436 522</a>'
+                '• Producător Hale Industriale: +40732116176<br>' +
+                '• Stație Betoane: +40745543664<br>' +
+                '• Fabrica Fasonare: +40758061773<br>' +
+                '• Magazin Carei: +40755130861<br>' +
+                '• Magazin Crasna: +40774436522'
         },
         {
             id: 'emails',
@@ -38,10 +38,10 @@ const chatbot = {
             text:
                 '<strong>Emailuri utile</strong><br>' +
                 '• Contact: <a href="mailto:contact@b-masiv.com">contact@b-masiv.com</a><br>' +
-                '• Fabrica Fasonare: <a href="mailto:fabrica-fasonare@b-masiv.com">fabrica-fasonare@b-masiv.com</a><br>' +
-                '• Magazin Carei: <a href="mailto:magazin-carei@b-masiv.com">magazin-carei@b-masiv.com</a><br>' +
-                '• Magazin Crasna: <a href="mailto:magazin-crasna@b-masiv.com">magazin-crasna@b-masiv.com</a><br>' +
-                '• Stație Betoane: <a href="mailto:statie-betoane@b-masiv.com">statie-betoane@b-masiv.com</a>'
+                '• Fabrica Fasonare: <a href="mailto:fasonare@b-masiv.ro">fasonare@b-masiv.ro</a><br>' +
+                '• Magazin Carei: <a href="mailto:office.carei@b-masiv.ro">office.carei@b-masiv.ro</a><br>' +
+                '• Magazin Crasna: <a href="mailto:office.crasna@b-masiv.ro">office.crasna@b-masiv.ro</a><br>' +
+                '• Stație Betoane: <a href="mailto:statie.betoane@b-masiv.ro">statie.betoane@b-masiv.ro</a>'
         },
         {
             id: 'address',
