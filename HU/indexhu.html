@@ -131,7 +131,7 @@
 
             <div class="row g-4">
                 <!-- Fabrica de Fasonat -->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card h-100 border-0 entity-card-modern">
                         <div class="entity-media">
                             <img src="../assets/img/sediu-2.jpg" class="img-fluid w-100" alt="Ipari csarnokok és fémszerkezetek gyártója" style="height: 210px; object-fit: cover;">
@@ -146,7 +146,27 @@
                             </p>
                             <div class="d-flex gap-2 flex-wrap mt-auto">
                                 <a href="producator-hale.html" class="btn btn-warning btn-sm">Részletek</a>
-                                <a href="fasonarehu.html" class="btn btn-outline-warning btn-sm">Hajlítóüzem</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Betonacél hajlítóüzem -->
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 entity-card-modern">
+                        <div class="entity-media">
+                            <img src="../assets/img/fabrica-fasonare/2.jpeg" class="img-fluid w-100" alt="Betonacél hajlítóüzem" style="height: 210px; object-fit: cover;">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-end mb-2">
+                                <span class="entity-mini">Vasalás gyártás</span>
+                            </div>
+                            <h3 class="h5 fw-bold mb-2">Fasonare üzem</h3>
+                            <p class="text-muted small mb-3">
+                                Betonacél pontos vágása és hajlítása lakossági és ipari projektekhez.
+                            </p>
+                            <div class="d-flex gap-2 flex-wrap mt-auto">
+                                <a href="fasonarehu.html" class="btn btn-warning btn-sm">Részletek</a>
                                 <a href="depozit-careihu.html" class="btn btn-outline-warning btn-sm">Carei raktár</a>
                                 <a href="depozit-crasnahu.html" class="btn btn-outline-warning btn-sm">Crasna raktár</a>
                             </div>
@@ -155,7 +175,7 @@
                 </div>
 
                 <!-- Statie de Betoane -->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card h-100 border-0 entity-card-modern">
                         <div class="entity-media">
                             <img src="../assets/img/statie-beton/16.png" class="img-fluid w-100" alt="Betonüzem" style="height: 215px; object-fit: cover;">
@@ -270,6 +290,19 @@
                                 </div>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control contact-input" name="Subiect" placeholder="Tárgy *" required>
+                                </div>
+                                <div class="col-12">
+                                    <select class="form-select contact-input" name="Részleg" required>
+                                        <option value="" selected disabled>Válassz részleget *</option>
+                                        <option value="Ipari csarnokok és fémszerkezetek ajánlatkérés">Ipari csarnokok és fémszerkezetek ajánlatkérés</option>
+                                        <option value="Betonacél-hajlító üzem">Betonacél-hajlító üzem</option>
+                                        <option value="Irodai kapcsolat">Irodai kapcsolat</option>
+                                        <option value="Carei üzlet">Carei üzlet</option>
+                                        <option value="Crasna üzlet">Crasna üzlet</option>
+                                        <option value="Betonüzem">Betonüzem</option>
+                                        <option value="Könyvelés">Könyvelés</option>
+                                        <option value="Titkárság">Titkárság</option>
+                                    </select>
                                 </div>
                                 <div class="col-12">
                                     <textarea class="form-control contact-input" name="Mesaj" rows="4" placeholder="Üzenet *" required></textarea>
