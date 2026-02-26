@@ -1106,6 +1106,18 @@
     </div>
 
     <script src="../assets/js/chatbot.js?v=20260218-13"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.location.hash !== "#collapsHale") return;
+
+            var haleEl = document.getElementById("collapsHale");
+            var firstProjectEl = document.getElementById("projectCollapse1");
+            if (!haleEl || !firstProjectEl || typeof bootstrap === "undefined") return;
+
+            bootstrap.Collapse.getOrCreateInstance(haleEl, { toggle: false }).show();
+            bootstrap.Collapse.getOrCreateInstance(firstProjectEl, { toggle: false }).show();
+        });
+    </script>
 
 </body>
 </html>
