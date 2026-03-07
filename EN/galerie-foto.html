@@ -1739,7 +1739,18 @@
             var haleEl = document.getElementById("collapsHale");
             if (!haleEl || typeof bootstrap === "undefined") return;
 
-            bootstrap.Collapse.getOrCreateInstance(haleEl, { toggle: false }).show();
+            var haleItem = haleEl.closest(".accordion-item") || haleEl;
+            var haleCollapse = bootstrap.Collapse.getOrCreateInstance(haleEl, { toggle: false });
+
+            function centerProjectsExpander() {
+                var rect = haleItem.getBoundingClientRect();
+                var targetTop = window.scrollY + rect.top - ((window.innerHeight - rect.height) / 2);
+                window.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
+            }
+
+            haleEl.addEventListener("shown.bs.collapse", centerProjectsExpander, { once: true });
+            haleCollapse.show();
+            setTimeout(centerProjectsExpander, 180);
         });
     </script>
 
