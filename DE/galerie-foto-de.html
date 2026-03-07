@@ -16,6 +16,113 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700&display=swap" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <style>
+        .video-carousel-layout {
+            max-width: 1500px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 0.9fr);
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .video-carousel {
+            width: 100%;
+        }
+
+        .video-carousel .carousel-item {
+            transition: none;
+        }
+
+        .video-side {
+            position: relative;
+        }
+
+        .video-side-preview {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            opacity: 0.66;
+            filter: saturate(70%) brightness(82%);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-side-preview::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .video-side-prev .video-side-preview::after {
+            background: linear-gradient(to right, rgba(25, 25, 25, 0.5), rgba(25, 25, 25, 0.1));
+        }
+
+        .video-side-next .video-side-preview::after {
+            background: linear-gradient(to left, rgba(25, 25, 25, 0.5), rgba(25, 25, 25, 0.1));
+        }
+
+        .video-side-preview img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .video-nav-btn {
+            border: 0;
+            border-radius: 50%;
+            background-color: #1f1f1f;
+            color: #fff;
+            width: 54px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            z-index: 2;
+            transform: translateY(-50%);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.26);
+        }
+
+        .video-side-prev .video-nav-btn {
+            right: -14px;
+        }
+
+        .video-side-next .video-nav-btn {
+            left: -14px;
+        }
+
+        .video-carousel-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.68);
+            background-size: 55% 55%;
+        }
+
+        @media (max-width: 768px) {
+            .video-carousel-layout {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
+
+            .video-carousel {
+                width: 100%;
+            }
+
+            .video-carousel-icon {
+                width: 2.2rem;
+                height: 2.2rem;
+            }
+
+            .video-side {
+                display: none;
+            }
+        }
+    </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116688379-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -99,26 +206,46 @@
                     </h2>
                     <div id="collapsVideo" class="accordion-collapse collapse show" data-bs-parent="#galleryAccordion">
                         <div class="accordion-body">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="ratio ratio-16x9">
-                                        <iframe src="https://www.youtube.com/embed/RcVmjUhS2Qw" title="B-Masiv Video 1" allowfullscreen></iframe>
+                            <div class="video-carousel-layout" aria-label="Video-Slideshow-Navigation">
+                                <div class="video-side video-side-prev">
+                                    <div class="ratio ratio-16x9 video-side-preview">
+                                        <img data-side-preview="prev" alt="Vorschau vorheriges Video" loading="lazy">
+                                    </div>
+                                    <button class="video-nav-btn" type="button" data-bs-target="#videoCarouselDe" data-bs-slide="prev" aria-label="Vorheriges Video">
+                                        <span class="carousel-control-prev-icon video-carousel-icon" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div id="videoCarouselDe" class="carousel slide video-carousel" data-bs-interval="false">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="ratio ratio-16x9">
+                                                <iframe src="https://www.youtube.com/embed/RcVmjUhS2Qw" title="B-Masiv Video 1" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="ratio ratio-16x9">
+                                                <iframe src="https://www.youtube.com/embed/sZDQAScL9pk" title="B-Masiv Video 2" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="ratio ratio-16x9">
+                                                <iframe src="https://www.youtube.com/embed/cQxinMrFSy4" title="B-Masiv Video 3" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="ratio ratio-16x9">
+                                                <iframe src="https://www.youtube.com/embed/4LmgvJ2IEZs" title="B-Masiv Video 4" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="ratio ratio-16x9">
-                                        <iframe src="https://www.youtube.com/embed/sZDQAScL9pk" title="B-Masiv Video 2" allowfullscreen></iframe>
+                                <div class="video-side video-side-next">
+                                    <div class="ratio ratio-16x9 video-side-preview">
+                                        <img data-side-preview="next" alt="Vorschau nächstes Video" loading="lazy">
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="ratio ratio-16x9">
-                                        <iframe src="https://www.youtube.com/embed/cQxinMrFSy4" title="B-Masiv Video 3" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="ratio ratio-16x9">
-                                        <iframe src="https://www.youtube.com/embed/4LmgvJ2IEZs" title="B-Masiv Video 4" allowfullscreen></iframe>
-                                    </div>
+                                    <button class="video-nav-btn" type="button" data-bs-target="#videoCarouselDe" data-bs-slide="next" aria-label="Nächstes Video">
+                                        <span class="carousel-control-next-icon video-carousel-icon" aria-hidden="true"></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1104,7 +1231,56 @@
 
     <script src="../assets/js/chatbot.js?v=20260218-13"></script>
     <script>
+        function initSideVideoPreviews(carouselId) {
+            if (typeof bootstrap === "undefined") return;
+
+            var carouselEl = document.getElementById(carouselId);
+            if (!carouselEl) return;
+
+            var layout = carouselEl.closest(".video-carousel-layout");
+            if (!layout) return;
+
+            var slides = Array.from(carouselEl.querySelectorAll(".carousel-item"));
+            var videos = slides.map(function (slide) { return slide.querySelector("iframe"); });
+            var prevPreview = layout.querySelector('[data-side-preview="prev"]');
+            var nextPreview = layout.querySelector('[data-side-preview="next"]');
+            if (videos.length < 2 || !prevPreview || !nextPreview) return;
+
+            function activeIndex() {
+                return slides.findIndex(function (slide) { return slide.classList.contains("active"); });
+            }
+
+            function setPreview(frame, index) {
+                var source = videos[index];
+                if (!source) return;
+                var embedSrc = source.getAttribute("src") || "";
+                var match = embedSrc.match(/\/embed\/([^?&]+)/);
+                if (!match || !match[1]) return;
+                frame.src = "https://img.youtube.com/vi/" + match[1] + "/hqdefault.jpg";
+                frame.alt = source.getAttribute("title") || "Video-Vorschau";
+            }
+
+            function refresh(current) {
+                if (typeof current !== "number") current = activeIndex();
+                if (current < 0) current = 0;
+                var prevIndex = (current - 1 + videos.length) % videos.length;
+                var nextIndex = (current + 1) % videos.length;
+                setPreview(prevPreview, prevIndex);
+                setPreview(nextPreview, nextIndex);
+            }
+
+            carouselEl.addEventListener("slide.bs.carousel", function (event) {
+                if (typeof event.to === "number") refresh(event.to);
+            });
+            carouselEl.addEventListener("slid.bs.carousel", function () {
+                refresh();
+            });
+            refresh();
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
+            initSideVideoPreviews("videoCarouselDe");
+
             if (window.location.hash !== "#collapsHale") return;
 
             var haleEl = document.getElementById("collapsHale");
