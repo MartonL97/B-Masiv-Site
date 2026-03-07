@@ -103,6 +103,195 @@
             background-size: 55% 55%;
         }
 
+        .project-cards-layout {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .project-cards-main {
+            width: 100%;
+        }
+
+        .project-cards-main .carousel-item {
+            padding: 0.25rem;
+        }
+
+        .project-card-btn {
+            border: 0;
+            background: #fff;
+            padding: 0;
+            text-align: left;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+            width: 100%;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card-btn img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            flex: 0 0 200px;
+        }
+
+        .project-card-title {
+            font-weight: 700;
+            font-size: 0.92rem;
+            line-height: 1.35;
+            color: #1d1d1d;
+            padding: 0.75rem 0.85rem 0.9rem;
+            min-height: 80px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-card-preview {
+            opacity: 0.68;
+            filter: saturate(70%) brightness(82%);
+        }
+
+        .project-card-preview .project-card-btn {
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .project-card-preview .project-card-title {
+            font-size: 0.82rem;
+        }
+
+        .project-cards-main .carousel-control-prev,
+        .project-cards-main .carousel-control-next {
+            width: 42px;
+            height: 42px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.86);
+            opacity: 1;
+            display: none;
+        }
+
+        .project-cards-main .carousel-control-prev {
+            left: 10px;
+        }
+
+        .project-cards-main .carousel-control-next {
+            right: 10px;
+        }
+
+        .project-gallery-modal .modal-dialog {
+            max-width: 1100px;
+        }
+
+        .project-gallery-modal .modal-content {
+            background: #111;
+            color: #fff;
+            border: 0;
+        }
+
+        .project-gallery-modal .btn-close {
+            filter: invert(1);
+        }
+
+        .project-gallery-image {
+            width: 100%;
+            max-height: 78vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .project-gallery-layout {
+            display: block;
+        }
+
+        .project-gallery-side {
+            display: none;
+        }
+
+        .project-gallery-side-preview {
+            border-radius: 10px;
+            overflow: hidden;
+            opacity: 0.62;
+            filter: saturate(75%) brightness(80%);
+        }
+
+        .project-gallery-side-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-gallery-nav-btn {
+            border: 0;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            background: #1f1f1f;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-gallery-side-prev .project-gallery-nav-btn {
+            right: -12px;
+        }
+
+        .project-gallery-side-next .project-gallery-nav-btn {
+            left: -12px;
+        }
+
+        .project-gallery-layout .carousel-control-prev,
+        .project-gallery-layout .carousel-control-next {
+            display: flex;
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            background: rgba(16, 16, 16, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(2px);
+            opacity: 1;
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+        }
+
+        .project-gallery-layout .carousel-control-prev {
+            left: 14px;
+        }
+
+        .project-gallery-layout .carousel-control-next {
+            right: 14px;
+        }
+
+        .project-gallery-layout .carousel-control-prev:hover,
+        .project-gallery-layout .carousel-control-next:hover {
+            background: rgba(8, 8, 8, 0.94);
+            transform: translateY(-50%) scale(1.06);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.46);
+        }
+
+        .project-gallery-layout .carousel-control-prev-icon,
+        .project-gallery-layout .carousel-control-next-icon {
+            width: 2rem;
+            height: 2rem;
+            background-size: 70% 70%;
+        }
+
         @media (max-width: 768px) {
             .video-carousel-layout {
                 grid-template-columns: 1fr;
@@ -120,6 +309,24 @@
 
             .video-side {
                 display: none;
+            }
+
+            .project-gallery-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .project-gallery-side {
+                display: none;
+            }
+
+            .project-gallery-layout .carousel-control-prev,
+            .project-gallery-layout .carousel-control-next {
+                display: flex;
+            }
+
+            .project-cards-main .carousel-control-prev,
+            .project-cards-main .carousel-control-next {
+                display: flex;
             }
         }
     </style>
@@ -1234,6 +1441,243 @@
 
     <script src="../assets/js/chatbot.js?v=20260218-13"></script>
     <script>
+        function collectProjects() {
+            var projectItems = Array.from(document.querySelectorAll("#projectsAccordion > .accordion-item"));
+            return projectItems.map(function (item) {
+                var titleBtn = item.querySelector(".accordion-button");
+                var images = Array.from(item.querySelectorAll(".accordion-collapse img")).map(function (img) {
+                    return {
+                        src: img.getAttribute("src") || "",
+                        alt: img.getAttribute("alt") || (titleBtn ? titleBtn.textContent.trim() : "Projektkep")
+                    };
+                }).filter(function (img) { return !!img.src; });
+
+                return {
+                    title: titleBtn ? titleBtn.textContent.trim() : "Projekt",
+                    images: images
+                };
+            }).filter(function (project) {
+                return project.images.length > 0;
+            });
+        }
+
+        function ensureProjectModal(labels) {
+            var existing = document.getElementById("projectGalleryModal");
+            if (existing) return existing;
+
+            var modal = document.createElement("div");
+            modal.className = "modal fade project-gallery-modal";
+            modal.id = "projectGalleryModal";
+            modal.tabIndex = -1;
+            modal.setAttribute("aria-hidden", "true");
+            modal.innerHTML =
+                '<div class="modal-dialog modal-dialog-centered modal-xl">' +
+                    '<div class="modal-content">' +
+                        '<div class="modal-header border-0 pb-0">' +
+                            '<h5 class="modal-title"></h5>' +
+                            '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="' + labels.close + '"></button>' +
+                        "</div>" +
+                        '<div class="modal-body pt-2">' +
+                            '<div class="project-gallery-layout">' +
+                                '<div class="project-gallery-side project-gallery-side-prev">' +
+                                    '<div class="ratio ratio-16x9 project-gallery-side-preview"><img data-project-side="prev" alt="' + labels.previous + '" loading="lazy"></div>' +
+                                    '<button class="project-gallery-nav-btn" type="button" data-bs-target="#projectGalleryCarousel" data-bs-slide="prev" aria-label="' + labels.previous + '"><span class="carousel-control-prev-icon" aria-hidden="true"></span></button>' +
+                                "</div>" +
+                                '<div id="projectGalleryCarousel" class="carousel slide" data-bs-interval="false">' +
+                                    '<div class="carousel-inner"></div>' +
+                                    '<button class="carousel-control-prev" type="button" data-bs-target="#projectGalleryCarousel" data-bs-slide="prev" aria-label="' + labels.previous + '"><span class="carousel-control-prev-icon" aria-hidden="true"></span></button>' +
+                                    '<button class="carousel-control-next" type="button" data-bs-target="#projectGalleryCarousel" data-bs-slide="next" aria-label="' + labels.next + '"><span class="carousel-control-next-icon" aria-hidden="true"></span></button>' +
+                                "</div>" +
+                                '<div class="project-gallery-side project-gallery-side-next">' +
+                                    '<div class="ratio ratio-16x9 project-gallery-side-preview"><img data-project-side="next" alt="' + labels.next + '" loading="lazy"></div>' +
+                                    '<button class="project-gallery-nav-btn" type="button" data-bs-target="#projectGalleryCarousel" data-bs-slide="next" aria-label="' + labels.next + '"><span class="carousel-control-next-icon" aria-hidden="true"></span></button>' +
+                                "</div>" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>";
+            document.body.appendChild(modal);
+            return modal;
+        }
+
+        function initProjectModalSidePreviews(modalEl) {
+            var carouselEl = modalEl.querySelector("#projectGalleryCarousel");
+            var prevImg = modalEl.querySelector('[data-project-side="prev"]');
+            var nextImg = modalEl.querySelector('[data-project-side="next"]');
+            if (!carouselEl || !prevImg || !nextImg) return;
+
+            function refresh(current) {
+                var images = modalEl._projectImages || [];
+                if (!images.length) return;
+                if (typeof current !== "number") {
+                    var activeItems = Array.from(carouselEl.querySelectorAll(".carousel-item"));
+                    current = activeItems.findIndex(function (item) { return item.classList.contains("active"); });
+                }
+                if (current < 0) current = 0;
+                if (images.length < 2) {
+                    prevImg.src = images[0].src;
+                    prevImg.alt = images[0].alt;
+                    nextImg.src = images[0].src;
+                    nextImg.alt = images[0].alt;
+                    return;
+                }
+                var prevIndex = (current - 1 + images.length) % images.length;
+                var nextIndex = (current + 1) % images.length;
+                prevImg.src = images[prevIndex].src;
+                prevImg.alt = images[prevIndex].alt;
+                nextImg.src = images[nextIndex].src;
+                nextImg.alt = images[nextIndex].alt;
+            }
+
+            if (!carouselEl._projectSideBound) {
+                carouselEl.addEventListener("slide.bs.carousel", function (event) {
+                    if (typeof event.to === "number") refresh(event.to);
+                });
+                carouselEl.addEventListener("slid.bs.carousel", function () {
+                    refresh();
+                });
+                carouselEl._projectSideBound = true;
+            }
+
+            carouselEl._refreshProjectSide = refresh;
+        }
+
+        function initProjectCards(labels) {
+            if (typeof bootstrap === "undefined") return;
+
+            var projectsAccordion = document.getElementById("projectsAccordion");
+            if (!projectsAccordion) return;
+
+            var projects = collectProjects();
+            if (!projects.length) return;
+
+            var cardsId = "projectCardsCarousel";
+            var layout = document.createElement("div");
+            layout.className = "video-carousel-layout project-cards-layout";
+            layout.setAttribute("aria-label", "Projektkartyak diavetites");
+
+            var prevSide = document.createElement("div");
+            prevSide.className = "video-side video-side-prev project-card-preview";
+            prevSide.innerHTML =
+                '<div class="project-card-btn" data-project-preview="prev">' +
+                    '<img src="" alt="' + labels.previousProject + '">' +
+                    '<div class="project-card-title"></div>' +
+                '</div>' +
+                '<button class="video-nav-btn" type="button" data-bs-target="#' + cardsId + '" data-bs-slide="prev" aria-label="' + labels.previousProject + '">' +
+                    '<span class="carousel-control-prev-icon video-carousel-icon" aria-hidden="true"></span>' +
+                "</button>";
+
+            var carouselWrap = document.createElement("div");
+            carouselWrap.id = cardsId;
+            carouselWrap.className = "carousel slide video-carousel project-cards-main";
+            carouselWrap.setAttribute("data-bs-interval", "false");
+
+            var inner = document.createElement("div");
+            inner.className = "carousel-inner";
+
+            function openProjectModal(projectIndex) {
+                var project = projects[projectIndex];
+                if (!project) return;
+                var modalEl = ensureProjectModal(labels);
+                var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                var titleEl = modalEl.querySelector(".modal-title");
+                var innerEl = modalEl.querySelector(".carousel-inner");
+                titleEl.textContent = project.title;
+                innerEl.innerHTML = project.images.map(function (img, index) {
+                    return '<div class="carousel-item' + (index === 0 ? " active" : "") + '"><img class="project-gallery-image" src="' + img.src + '" alt="' + img.alt + '"></div>';
+                }).join("");
+
+                modalEl._projectImages = project.images;
+                initProjectModalSidePreviews(modalEl);
+                var modalCarouselEl = modalEl.querySelector("#projectGalleryCarousel");
+                bootstrap.Carousel.getOrCreateInstance(modalCarouselEl, { interval: false }).to(0);
+                if (modalCarouselEl._refreshProjectSide) modalCarouselEl._refreshProjectSide(0);
+                modal.show();
+            }
+
+            projects.forEach(function (project, projectIndex) {
+                var item = document.createElement("div");
+                item.className = "carousel-item" + (projectIndex === 0 ? " active" : "");
+                var btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "project-card-btn";
+                btn.innerHTML =
+                    '<img src="' + project.images[0].src + '" alt="' + project.images[0].alt + '">' +
+                    '<div class="project-card-title">' + project.title + "</div>";
+                btn.addEventListener("click", function () {
+                    openProjectModal(projectIndex);
+                });
+                item.appendChild(btn);
+                inner.appendChild(item);
+            });
+
+            carouselWrap.appendChild(inner);
+            var cardsPrevBtn = document.createElement("button");
+            cardsPrevBtn.className = "carousel-control-prev";
+            cardsPrevBtn.type = "button";
+            cardsPrevBtn.setAttribute("data-bs-target", "#" + cardsId);
+            cardsPrevBtn.setAttribute("data-bs-slide", "prev");
+            cardsPrevBtn.setAttribute("aria-label", labels.previousProject);
+            cardsPrevBtn.innerHTML = '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+            var cardsNextBtn = document.createElement("button");
+            cardsNextBtn.className = "carousel-control-next";
+            cardsNextBtn.type = "button";
+            cardsNextBtn.setAttribute("data-bs-target", "#" + cardsId);
+            cardsNextBtn.setAttribute("data-bs-slide", "next");
+            cardsNextBtn.setAttribute("aria-label", labels.nextProject);
+            cardsNextBtn.innerHTML = '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+            carouselWrap.appendChild(cardsPrevBtn);
+            carouselWrap.appendChild(cardsNextBtn);
+
+            var nextSide = document.createElement("div");
+            nextSide.className = "video-side video-side-next project-card-preview";
+            nextSide.innerHTML =
+                '<div class="project-card-btn" data-project-preview="next">' +
+                    '<img src="" alt="' + labels.nextProject + '">' +
+                    '<div class="project-card-title"></div>' +
+                '</div>' +
+                '<button class="video-nav-btn" type="button" data-bs-target="#' + cardsId + '" data-bs-slide="next" aria-label="' + labels.nextProject + '">' +
+                    '<span class="carousel-control-next-icon video-carousel-icon" aria-hidden="true"></span>' +
+                "</button>";
+
+            layout.appendChild(prevSide);
+            layout.appendChild(carouselWrap);
+            layout.appendChild(nextSide);
+
+            function updateSidePreview(slot, idx) {
+                var previewEl = layout.querySelector('[data-project-preview="' + slot + '"]');
+                if (!previewEl || !projects[idx]) return;
+                var imgEl = previewEl.querySelector("img");
+                var titleEl = previewEl.querySelector(".project-card-title");
+                imgEl.src = projects[idx].images[0].src;
+                imgEl.alt = projects[idx].images[0].alt;
+                titleEl.textContent = projects[idx].title;
+            }
+
+            function refreshSidePreviews(current) {
+                if (typeof current !== "number") {
+                    var items = Array.from(carouselWrap.querySelectorAll(".carousel-item"));
+                    current = items.findIndex(function (item) { return item.classList.contains("active"); });
+                }
+                if (current < 0) current = 0;
+                var prevIndex = (current - 1 + projects.length) % projects.length;
+                var nextIndex = (current + 1) % projects.length;
+                updateSidePreview("prev", prevIndex);
+                updateSidePreview("next", nextIndex);
+            }
+
+            carouselWrap.addEventListener("slide.bs.carousel", function (event) {
+                if (typeof event.to === "number") refreshSidePreviews(event.to);
+            });
+            carouselWrap.addEventListener("slid.bs.carousel", function () {
+                refreshSidePreviews();
+            });
+            refreshSidePreviews(0);
+
+            projectsAccordion.innerHTML = "";
+            projectsAccordion.appendChild(layout);
+        }
+
         function initSideVideoPreviews(carouselId) {
             if (typeof bootstrap === "undefined") return;
 
@@ -1283,15 +1727,20 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             initSideVideoPreviews("videoCarouselHu");
+            initProjectCards({
+                close: "Bezaras",
+                previous: "Elozo kep",
+                next: "Kovetkezo kep",
+                previousProject: "Elozo projekt",
+                nextProject: "Kovetkezo projekt"
+            });
 
             if (window.location.hash !== "#collapsHale") return;
 
             var haleEl = document.getElementById("collapsHale");
-            var firstProjectEl = document.getElementById("projectCollapse1");
-            if (!haleEl || !firstProjectEl || typeof bootstrap === "undefined") return;
+            if (!haleEl || typeof bootstrap === "undefined") return;
 
             bootstrap.Collapse.getOrCreateInstance(haleEl, { toggle: false }).show();
-            bootstrap.Collapse.getOrCreateInstance(firstProjectEl, { toggle: false }).show();
         });
     </script>
 
