@@ -479,10 +479,10 @@
                                         <div class="accordion-body">
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-6 mb-3">
-                                                    <img src="../assets/img/Proiecte/CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE/1.jpeg" alt="CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
+                                                    <img src="../assets/img/Proiecte/CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE/2.jpeg" alt="CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 mb-3">
-                                                    <img src="../assets/img/Proiecte/CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE/2.jpeg" alt="CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
+                                                    <img src="../assets/img/Proiecte/CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE/1.jpeg" alt="CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 mb-3">
                                                     <img src="../assets/img/Proiecte/CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE/3.jpeg" alt="CENTRUL DE COLECTARE PLANTE PROTEGINOASE -COMUNA BOTIZ JUD.SATU MARE" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
@@ -510,16 +510,16 @@
                                         <div class="accordion-body">
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-6 mb-3">
-                                                    <img src="../assets/img/Proiecte/CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC/1.png" alt="CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
+                                                    <img src="../assets/img/Proiecte/CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC/4.png" alt="CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 mb-3">
-                                                    <img src="../assets/img/Proiecte/CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC/2.png" alt="CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
+                                                    <img src="../assets/img/Proiecte/CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC/1.png" alt="CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 mb-3">
                                                     <img src="../assets/img/Proiecte/CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC/3.png" alt="CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 mb-3">
-                                                    <img src="../assets/img/Proiecte/CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC/4.png" alt="CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
+                                                    <img src="../assets/img/Proiecte/CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC/2.png" alt="CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 mb-3">
                                                     <img src="../assets/img/Proiecte/CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC/5.png" alt="CONSTRUIRE FERMA DE PUI DE CARNE IN COMUNA CIUMEGHIU, SAT GHIORAC" class="img-fluid rounded shadow-sm" style="width:100%; height:250px; object-fit:cover;">
@@ -1724,8 +1724,178 @@
             refresh();
         }
 
+        function ensureSectionImageModal(labels) {
+            var existing = document.getElementById("sectionImageModal");
+            if (existing) return existing;
+
+            var modal = document.createElement("div");
+            modal.className = "modal fade project-gallery-modal";
+            modal.id = "sectionImageModal";
+            modal.tabIndex = -1;
+            modal.setAttribute("aria-hidden", "true");
+            modal.innerHTML =
+                '<div class="modal-dialog modal-dialog-centered modal-xl">' +
+                    '<div class="modal-content">' +
+                        '<div class="modal-header border-0 pb-0">' +
+                            '<h5 class="modal-title"></h5>' +
+                            '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="' + labels.close + '"></button>' +
+                        "</div>" +
+                        '<div class="modal-body pt-2">' +
+                            '<img class="project-gallery-image" src="" alt="">' +
+                        "</div>" +
+                    "</div>" +
+                "</div>";
+            document.body.appendChild(modal);
+            return modal;
+        }
+
+        function openSectionImageModal(src, alt, labels) {
+            if (typeof bootstrap === "undefined" || !src) return;
+            var modalEl = ensureSectionImageModal(labels);
+            var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            var titleEl = modalEl.querySelector(".modal-title");
+            var imageEl = modalEl.querySelector(".project-gallery-image");
+            titleEl.textContent = alt || labels.defaultAlt;
+            imageEl.src = src;
+            imageEl.alt = alt || labels.defaultAlt;
+            modal.show();
+        }
+
+        function initImageSectionCarousel(collapseId, carouselId, labels) {
+            if (typeof bootstrap === "undefined") return;
+            var collapseEl = document.getElementById(collapseId);
+            if (!collapseEl) return;
+
+            var body = collapseEl.querySelector(".accordion-body");
+            if (!body || body.dataset.imageCarouselInit === "1") return;
+
+            var images = Array.from(body.querySelectorAll("img")).map(function (img) {
+                return {
+                    src: img.getAttribute("src") || "",
+                    alt: img.getAttribute("alt") || labels.defaultAlt
+                };
+            }).filter(function (img) { return !!img.src; });
+
+            if (images.length < 2) return;
+
+            var layout = document.createElement("div");
+            layout.className = "video-carousel-layout";
+            layout.setAttribute("aria-label", labels.ariaLabel);
+
+            var prevSide = document.createElement("div");
+            prevSide.className = "video-side video-side-prev";
+            prevSide.innerHTML =
+                '<div class="ratio ratio-16x9 video-side-preview">' +
+                    '<img data-image-side="prev" alt="' + labels.previous + '" loading="lazy">' +
+                '</div>' +
+                '<button class="video-nav-btn" type="button" data-bs-target="#' + carouselId + '" data-bs-slide="prev" aria-label="' + labels.previous + '">' +
+                    '<span class="carousel-control-prev-icon video-carousel-icon" aria-hidden="true"></span>' +
+                "</button>";
+
+            var carouselWrap = document.createElement("div");
+            carouselWrap.id = carouselId;
+            carouselWrap.className = "carousel slide video-carousel";
+            carouselWrap.setAttribute("data-bs-interval", "false");
+
+            var inner = document.createElement("div");
+            inner.className = "carousel-inner";
+            images.forEach(function (img, index) {
+                var item = document.createElement("div");
+                item.className = "carousel-item" + (index === 0 ? " active" : "");
+
+                var slideImg = document.createElement("img");
+                slideImg.className = "w-100 d-block rounded";
+                slideImg.src = img.src;
+                slideImg.alt = img.alt;
+                slideImg.loading = "lazy";
+                slideImg.style.aspectRatio = "16 / 9";
+                slideImg.style.objectFit = "cover";
+                slideImg.style.cursor = "zoom-in";
+                slideImg.addEventListener("click", function () {
+                    openSectionImageModal(img.src, img.alt, labels);
+                });
+
+                item.appendChild(slideImg);
+                inner.appendChild(item);
+            });
+            carouselWrap.appendChild(inner);
+            var nextSide = document.createElement("div");
+            nextSide.className = "video-side video-side-next";
+            nextSide.innerHTML =
+                '<div class="ratio ratio-16x9 video-side-preview">' +
+                    '<img data-image-side="next" alt="' + labels.next + '" loading="lazy">' +
+                '</div>' +
+                '<button class="video-nav-btn" type="button" data-bs-target="#' + carouselId + '" data-bs-slide="next" aria-label="' + labels.next + '">' +
+                    '<span class="carousel-control-next-icon video-carousel-icon" aria-hidden="true"></span>' +
+                "</button>";
+
+            layout.appendChild(prevSide);
+            layout.appendChild(carouselWrap);
+            layout.appendChild(nextSide);
+
+            function refreshSide(index) {
+                var current = typeof index === "number" ? index : Array.from(carouselWrap.querySelectorAll(".carousel-item")).findIndex(function (item) {
+                    return item.classList.contains("active");
+                });
+                if (current < 0) current = 0;
+
+                var prevIndex = (current - 1 + images.length) % images.length;
+                var nextIndex = (current + 1) % images.length;
+                var prevImg = layout.querySelector('[data-image-side="prev"]');
+                var nextImg = layout.querySelector('[data-image-side="next"]');
+                if (prevImg) {
+                    prevImg.src = images[prevIndex].src;
+                    prevImg.alt = images[prevIndex].alt;
+                }
+                if (nextImg) {
+                    nextImg.src = images[nextIndex].src;
+                    nextImg.alt = images[nextIndex].alt;
+                }
+            }
+
+            carouselWrap.addEventListener("slide.bs.carousel", function (event) {
+                if (typeof event.to === "number") refreshSide(event.to);
+            });
+            carouselWrap.addEventListener("slid.bs.carousel", function () {
+                refreshSide();
+            });
+
+            body.innerHTML = "";
+            body.appendChild(layout);
+            body.dataset.imageCarouselInit = "1";
+            refreshSide(0);
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             initSideVideoPreviews("videoCarouselEn");
+            initImageSectionCarousel("collapsFabrica", "imageCarouselFabricaEn", {
+                previous: "Previous image",
+                next: "Next image",
+                defaultAlt: "Project image",
+                close: "Close",
+                ariaLabel: "Factory image slideshow navigation"
+            });
+            initImageSectionCarousel("collapsCarei", "imageCarouselCareiEn", {
+                previous: "Previous image",
+                next: "Next image",
+                defaultAlt: "Project image",
+                close: "Close",
+                ariaLabel: "Carei depot image slideshow navigation"
+            });
+            initImageSectionCarousel("collapsCrasna", "imageCarouselCrasnaEn", {
+                previous: "Previous image",
+                next: "Next image",
+                defaultAlt: "Project image",
+                close: "Close",
+                ariaLabel: "Crasna depot image slideshow navigation"
+            });
+            initImageSectionCarousel("collapsBetoane", "imageCarouselBetoaneEn", {
+                previous: "Previous image",
+                next: "Next image",
+                defaultAlt: "Project image",
+                close: "Close",
+                ariaLabel: "Concrete plant image slideshow navigation"
+            });
             initProjectCards({
                 close: "Close",
                 previous: "Previous image",
