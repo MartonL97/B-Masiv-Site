@@ -3,18 +3,49 @@
     'use strict';
 
     var EMAIL_TARGET = 'marton.lakatos@b-masiv.ro';
+    var DEPARTMENT_EMAILS = {
+        // RO
+        'Ofertare hale industriale si constructii metalice': 'ofertare@b-masiv.ro',
+        'Fabrica de fasonare otel-beton': 'fasonare@b-masiv.ro',
+        'Contact birou': 'office@b-masiv.ro',
+        'Magazin Carei': 'office.carei@b-masiv.ro',
+        'Magazin Crasna': 'office.crasna@b-masiv.ro',
+        'Statie de betoane': 'beton@b-masiv.ro',
+        'Contabilitate': 'contabilitate@b-masiv.ro',
+        'Secretariat': 'secretariat@b-masiv.ro',
+        // EN
+        'Quotation for industrial halls and metal structures': 'ofertare@b-masiv.ro',
+        'Rebar processing factory': 'fasonare@b-masiv.ro',
+        'Office contact': 'office@b-masiv.ro',
+        'Carei store': 'office.carei@b-masiv.ro',
+        'Crasna store': 'office.crasna@b-masiv.ro',
+        'Concrete plant': 'beton@b-masiv.ro',
+        'Accounting': 'contabilitate@b-masiv.ro',
+        // DE
+        'Angebote für Industriehallen und Metallkonstruktionen': 'ofertare@b-masiv.ro',
+        'Betonstahl-Biegewerk': 'fasonare@b-masiv.ro',
+        'Bürokontakt': 'office@b-masiv.ro',
+        'Lager/Shop Carei': 'office.carei@b-masiv.ro',
+        'Lager/Shop Crasna': 'office.crasna@b-masiv.ro',
+        'Betonwerk': 'beton@b-masiv.ro',
+        'Buchhaltung': 'contabilitate@b-masiv.ro',
+        'Sekretariat': 'secretariat@b-masiv.ro',
+        // HU
+        'Ipari csarnokok és fémszerkezetek ajánlatkérés': 'ofertare@b-masiv.ro',
+        'Betonacél-hajlító üzem': 'fasonare@b-masiv.ro',
+        'Irodai kapcsolat': 'office@b-masiv.ro',
+        'Carei üzlet': 'office.carei@b-masiv.ro',
+        'Crasna üzlet': 'office.crasna@b-masiv.ro',
+        'Betonüzem': 'beton@b-masiv.ro',
+        'Könyvelés': 'contabilitate@b-masiv.ro',
+        'Titkárság': 'secretariat@b-masiv.ro'
+    };
     var EMAILJS_CONFIG = {
         // Configure these values to enable EmailJS sending.
         // https://dashboard.emailjs.com/admin
         publicKey: '823ynTtxvANEfJRJc',
         serviceId: 'service_nqbja9d',
-        templateId: 'template_t43l1zg'
-    };
-    var TEMPLATE_BY_DEPARTMENT = {
-        'Ofertare': 'template_0ztzd3r',
-        'Magazin Carei': 'template_t43l1zg',
-        'Magazin Crasna': 'template_t43l1zg',
-        'Producator confectii metalice': 'template_t43l1zg'
+        templateId: 'template_0ztzd3r'
     };
     var I18N = {
         ro: {
@@ -79,16 +110,16 @@
         );
     }
 
-    function getTemplateIdForDepartment(department) {
-        return TEMPLATE_BY_DEPARTMENT[department] || EMAILJS_CONFIG.templateId;
-    }
-
     function sendViaEmailJS(templateId, params) {
         return window.emailjs.send(
             EMAILJS_CONFIG.serviceId,
             templateId,
             params
         );
+    }
+
+    function getRecipientEmailForDepartment(department) {
+        return DEPARTMENT_EMAILS[department] || EMAIL_TARGET;
     }
 
     function getEmailTimestamps() {
@@ -169,9 +200,10 @@
         var department = getValue(form, 'Departament');
         var subject = getValue(form, 'Subiect') || 'Cerere de pe site';
         var message = getValue(form, 'Mesaj');
-        var cleanSubject = 'Cerere website B-Masiv [' + (department || 'General') + ']: ' + subject;
+        var cleanSubject = subject;
         var submittedAt = new Date().toLocaleString('ro-RO');
-        var templateId = getTemplateIdForDepartment(department);
+        var templateId = EMAILJS_CONFIG.templateId;
+        var recipientEmail = getRecipientEmailForDepartment(department);
 
         var bodyLines = [
             'Departament: ' + (department || '-'),
@@ -184,7 +216,7 @@
             message || '-'
         ];
 
-        var mailto = 'mailto:' + encodeURIComponent(EMAIL_TARGET) +
+        var mailto = 'mailto:' + encodeURIComponent(recipientEmail) +
             '?subject=' + encodeURIComponent(cleanSubject) +
             '&body=' + encodeURIComponent(bodyLines.join('\n'));
 
@@ -224,9 +256,9 @@
         }
 
         sendViaEmailJS(templateId, {
-            to_email: EMAIL_TARGET,
-            to: EMAIL_TARGET,
-            recipient_email: EMAIL_TARGET,
+            to_email: recipientEmail,
+            to: recipientEmail,
+            recipient_email: recipientEmail,
             department: department || '-',
             subject: cleanSubject,
             submitted_at: submittedAt,
